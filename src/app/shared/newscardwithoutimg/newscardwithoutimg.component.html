@@ -1,0 +1,191 @@
+<div class="row ml-1 mr-1 mb-4 main-wrapper ">
+
+
+    <div class="col-12 section-second ">
+        <div class="row" style="height: 270px;">
+            <!-- <div class="col-2 spc">
+                <span style="color: #466ce4;font-weight: bold;">{{ news.publication_date | date: ' MMM' }}</span>
+
+
+
+                <span
+                    style="font-size: 14px;color: #322941;font-weight: bold;    position: absolute;top: 20px;  left: 20px;">
+                    {{ news.publication_date | date: 'dd' }}</span>
+            </div> -->
+            <div class="col-12">
+                <div class="date fin2" style="">
+                    {{news.source_name}} <span class="dot"></span>
+                    <span style="font-size: 13px;">{{newstotalhours}}h ago</span>
+
+                    <span style="position: absolute;right: 16px;">
+
+                        <div *ngIf="realFakeCheaker === 'real'">
+                            <img src="../../../assets/real.png" alt="" width="16px">
+                            <div class="overlayreal">
+                            </div>
+                            <div class="value" style="color: #36D073; opacity: 1;">
+                                Real
+                            </div>
+                        </div>
+
+                        <div *ngIf="realFakeCheaker === 'notsure'">
+                            <img src="../../../assets/notsure.png" alt="" width="16px">
+                            <div class="overlaynotsure">
+                            </div>
+                            <div class="value1" style="color: #FFBC00; opacity: 1;"> Notsure</div>
+                        </div>
+
+                        <div *ngIf="realFakeCheaker === 'fake'">
+                            <img src="../../../assets/fake.png" alt="" width="16px">
+                            <div class="overlayfake">
+                            </div>
+                            <div class="value2" style="color: #FF6027; opacity: 1;">
+                                Fake
+                            </div>
+                        </div>
+
+                    </span>
+                </div>
+
+                <div class="title  mt-2" style="height: 30px;">
+                    <a style="text-decoration : none;font-weight: bold; color: #322941; cursor: pointer;"
+                        (click)="mover()">
+                        {{ news.title | slice: 0:50 }}
+
+                    </a>
+                </div>
+                <div class="title"
+                    style="height: 170px; color: #7c7c7c;text-align: left;    padding-top: 10px; padding-bottom: 10px;">
+                    <a style="cursor: pointer;height: 170px;" (click)="mover()"> {{ news.summary }}...
+                        <!-- <span  style="color: #466ce4; opacity: 1 !important;">Read more</span>  -->
+                    </a>
+
+                </div>
+
+                <div class="">
+                    <div id=" progress" class="progress">
+                        <div class="progress-bar bg-weak" [style.width.%]="news.positive_percentage"></div>
+                        <div class="progress-bar bg-good" [style.width.%]="news.negative_percentage"></div>
+                        <div class="progress-bar bg-strong" [style.width.%]="news.unsure_percentage"></div>
+                    </div>
+                    <span class="ttl" style="">
+                        {{news.total_votes}}
+                        votes</span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="">
+            <hr style="" class="line11">
+            <div class="col-12">
+
+                <div class="">
+                    <span style="font-size: 13px;position: relative;top: 8px;">
+                        Vote
+                    </span>
+                    <!-- Positive Vote start -->
+                    <button (click)="addVoteToNews()"
+                        *ngIf="news.positive_voted === false || news.positive_voted=== null" id="real"><span
+                            style="font-family: Gilroy-Bold;">Real</span><br> {{news.positive_votes}}
+                    </button>
+
+                    <button (click)="addVoteToNews()" *ngIf="news.positive_voted === true" id="real"
+                        style="background: #36D073 !important; color: white;"><span
+                            style="font-family: Gilroy-Bold;">Real</span><br> {{news.positive_votes}}
+                    </button>
+                    <!-- Positive Vote end -->
+
+                    <!-- Not Sure Vote start -->
+
+                    <button (click)="notSureVoteToNews()" *ngIf="news.unsure === false || news.unsure === null"
+                        id="notsure"><span style="font-family: Gilroy-Bold;">Not sure</span> <br>
+                        {{news.unsure_votes}}</button>
+
+                    <button (click)="notSureVoteToNews()" *ngIf="news.unsure === true" id="notsure"
+                        style=" background: #FFBC00 !important; color: white;">
+                        <span style="font-family: Gilroy-Bold;">Not sure</span> <br>
+                        {{news.unsure_votes}}</button>
+
+                    <!-- Not sure Vote end -->
+
+                    <!-- Negative Vote start -->
+
+                    <button (click)="downVoteFromNews()"
+                        *ngIf="news.negative_voted === false || news.negative_voted === null" id="fake"><span
+                            style="font-family: Gilroy-Bold;">Fake </span><br>
+                        {{news.negative_votes}}</button>
+
+                    <button (click)="downVoteFromNews()" *ngIf="news.negative_voted === true" id="fake"
+                        style=" background: #FF6027 !important; color: white;"><span
+                            style="font-family: Gilroy-Bold;">Fake
+                        </span><br>
+                        {{news.negative_votes}}</button>
+                    <!-- Negative Vote end -->
+
+                </div>
+
+                <!-- <div class="row no-gutters" style="height: 55px;">
+
+                    <div class="col-5">
+
+                        <div style="padding-right: 0px;padding-top: 20px; ">
+
+
+
+                            <div id="progress" class="progress">
+                                <div class="progress-bar bg-weak" [style.width.px]="news.positive_percentage"></div>
+                                <div class="progress-bar bg-good" [style.width.px]="news.negative_percentage"></div>
+                                <div class="progress-bar bg-strong" style="width: 0px"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-7 ">
+                        <div class="abc" style="">
+
+                            <button *ngIf="news.negative_voted === false || news.negative_voted === null"
+                                (click)="downVoteFromNews()" type="button" id="testBtn" class="btn  positive_votes"
+                                data-loading-text=" ... ">
+                                <img style="opacity: 1;z-index: 1;" src="../../../assets/Website_Icons/thumbdown.svg"
+                                    alt="">
+                                <span style="opacity: 1;padding-left: 3px;">{{news.negative_votes}}</span>
+                            </button>
+
+                            <button *ngIf="news.negative_voted === true"
+                                style="background-color: #FF6978;border-color: #FF6978;" (click)="downVoteFromNews()"
+                                type="button" id="testBtn" class="btn  positive_votes" data-loading-text=" ... ">
+
+                                <img style="opacity: 1;z-index: 1; width: 13px;"
+                                    src="../../../assets/Website_Icons/thumb-down.svg" alt="">
+                                <span style="opacity: 1;padding-left: 3px;color: white;">{{news.negative_votes}}</span>
+                            </button>
+
+                            <button *ngIf="news.positive_voted === false || news.positive_voted === null"
+                                (click)="addVoteToNews()" type="button" id="testBtnDown" class="btn  negative_votes"
+                                data-loading-text=" ... ">
+                                <img style="opacity: 1;z-index: 1;" src="../../../assets/Website_Icons/thumbup.svg"
+                                    alt="">
+                                <span style="opacity: 1;">
+                                    {{news.positive_votes}}
+                                </span>
+                            </button>
+                            <button *ngIf="news.positive_voted === true"
+                                style="background-color: #36D073; border-color: #36D073;" (click)="addVoteToNews()"
+                                type="button" id="testBtnDown" class="btn  negative_votes" data-loading-text=" ... ">
+                                <img style="opacity: 1;z-index: 1;width: 13px;"
+                                    src="../../../assets/Website_Icons/thumbsup.svg" alt="">
+                                <span style="opacity: 1; color: white;">
+                                    {{news.positive_votes}}
+                                </span>
+
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+</div>

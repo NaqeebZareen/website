@@ -1,0 +1,131 @@
+<!-- 
+  Most Common Screen Widths
+
+Desktop
+1920
+1600
+1536
+1400
+1366
+
+Tablet
+768
+1280
+
+Mobile
+414
+375
+360
+
+Mobile width 360 has the highest market share. Desktop width 1366 lies second while 1920 is third in the row.
+ -->
+<div class="addsticker">
+  <span style="font-size: 14px;">In next 24 hours</span>
+</div>
+
+<div>
+  <button class="addButton" id="changeBack" (click)="navigateToSearchPage()">
+    Find out more
+  </button>
+</div>
+<div id="carouselExampleCaptions" class="carousel slide slideA" data-ride="carousel" data-interval="false">
+
+
+  <!-- <ul class="carousel-indicators">
+
+    <li data-target="#carouselExampleCaptions" *ngFor="let item of items;let index = index"
+      [attr.data-slide-to]="index"></li>
+  </ul> -->
+
+  <div class="carousel-inner">
+    <div class="carousel-item"
+      *ngFor=" let item of items;let index = index;let activity of recmandedList ;let isFirst = first"
+      [ngClass]="{active:isFirst}">
+
+
+      <div class="card main" style="max-width: 500px;">
+        <div class="row no-gutters" style="padding: 10px;">
+          <div class="col-3" style="background: #466ce4;border-radius: 5px;">
+            <!-- <img src="images/sample.svg" class="card-img-top h-100" alt="..."> -->
+            <div class="date-mon">
+              <span class="date1" style="">{{ activity.start_date | date: ' MMM' }}</span>
+              <span class="date2" style="">{{ activity.start_date | date: 'dd' }}</span>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="card-body" style="padding: 0px;padding-left: 10px;">
+
+              <h4 class="card-text text1" style="">{{activity.title | slice: 0:40}}</h4>
+              <h5 class="card-title text2" style="">
+                {{ activity.start_date | date: 'EEEE' }}, {{ activity.start_date | date: 'h:mm a' }}
+              </h5>
+              <!-- <a href="#" class="btn btn-primary stretched-link">View Profile</a> -->
+            </div>
+          </div>
+        </div>
+        <hr style="margin-bottom: 3px;margin-top: -0.5rem;margin-left: 20px; margin-right: 20px;opacity: 0.6;">
+        <div class="row no-gutters" style="height: 45px;">
+          <div class="col-6">
+            <div class="abc">
+              <img src="../../../assets/Website_Icons/src.svg" alt="Avatar" class="image">
+              <div class="overlay">
+                <div class="text">
+                  <a class="text"
+                    style="color: black;padding-left: 15px;max-width: 100px; max-height: 10px; overflow: hidden;"
+                    href="{{activity.source_link}}">{{activity.source_link}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+
+            <div style="text-align: right;padding-right: 13px;padding-top: 7px; ">
+              <!-- <span style="padding-right: 20px;"> <img src="../../../assets/Website_Icons/liked.svg" alt=""
+                  width="30px"></span> -->
+
+              <a style="cursor:pointer;" (click)="addToWishList()">
+                <span style="padding-right: 20px; cursor: pointer;">
+                  <img *ngIf="activity.saved === false" src="../../../assets/Website_Icons/starred.png" alt=""
+                    width="30px">
+                  <img *ngIf="activity.saved === true" src="../../../assets/Website_Icons/star_selected.png" alt=""
+                    width="30px">
+                </span>
+              </a>
+
+
+              <span class="dropdown-toggle wid" data-toggle="dropdown" Dropdown button>
+                <img src="../../../assets/Website_Icons/sharre.svg" alt="" width="30px"></span>
+
+              <div class="dropdown-menu" style="min-width: 9rem;padding-left: 10px;">
+
+                <button style="border: none; background: none; box-shadow: none !important;outline: none !important;"
+                  class="" (click)="facebookSharing(shareObj)">
+                  <img src="../../../assets/Website_Icons/fb.png" width="30px" alt="">
+                </button>
+
+                <a style="padding-left: 5px;" class="" href="https://twitter.com/intent/tweet?url={{url}}">
+                  <img src="../../../assets/Website_Icons/in.png" width="30px" alt="">
+                </a>
+
+
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title=YOUCANACTIVITY&summary=YourarticleSummary&source=YourarticleSource"
+                  class="" style="padding-left: 15px; ">
+                  <img src="../../../assets/Website_Icons/ln.png" width="30px" alt="">
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#carouselExampleCaptions" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleCaptions" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>

@@ -1,0 +1,40 @@
+<div class="container-fluid f-bg pt-5">
+  <div class="col-sm-11 mx-auto">
+    <div class="row">
+      <div class="col-lg-3 col-sm-12 mb-4 f-radius">
+        <div class="card mx-auto">
+          <img class="card-img-top " [src]="userProfilePic" class="profile-pic" alt="profilepic">
+          <div class="card-body" style="text-align: center;">
+            <h4 class="card-title">{{userName}}</h4>
+            <p class="card-text">{{userEmail}}</p>
+            <button class="btn btn-sm edit-btn" style="color:white;" (click)="navigateToUpdateProfilePage()">Edit
+              profile</button>
+          </div>
+          <div class="card-body">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-9 col-sm-12">
+        <nav class="navbar navbar-expand-sm shadow" style="background-color: #fff;">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link " routerLinkActive="nav-item-active" [routerLink]="['wish-list']">Wishlist </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" routerLinkActive="nav-item-active" [routerLink]="['host-activities']">Hosted
+                Acitivites</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="nav-item-active" [routerLink]="['join-activities']">Joined </a>
+            </li> -->
+          </ul>
+        </nav>
+        <div class="mt-5 shadow">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

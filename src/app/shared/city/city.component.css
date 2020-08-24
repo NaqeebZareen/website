@@ -1,0 +1,43 @@
+.notselected {
+    border-radius: 10px;
+    box-shadow: 3px 3px 9px 0px rgba(0, 0, 0, 0.1), 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 15px;
+    color: #1E90FF;
+    text-align: center;
+    font-family: Gilroy-Medium;
+    font-weight: 'Medium';
+    font-size: 22px;
+    background: #FFFFFF;
+  
+  }
+  
+  .selected {
+    border-radius: 10px;
+    box-shadow: 3px 3px 9px 0px rgba(0, 0, 0, 0.1), 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 15px;
+    color: white;
+    text-align: center;
+    font-family: Gilroy-Medium;
+    font-weight: 'Medium';
+    font-size: 22px;
+    background-color: #1E90FF;
+  }
+  
+  .logo {
+    height: 40px;
+    padding-left: 10px;
+  }
+  
+  .selected:hover {
+    background-color: #1E90FF;
+    color: white;
+  }
+  
+  .notselected:hover {
+    background-color: white;
+    color: #1E90FF;
+  }

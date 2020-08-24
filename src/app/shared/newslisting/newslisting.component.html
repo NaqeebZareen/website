@@ -1,0 +1,53 @@
+<section>
+  <div id="Gridview">
+    <div class="">
+      <!-- <h4 class="header-title" style="font-weight: bold;font-size: 24px;margin-bottom: 30px;"> {{activity.category}}
+          <span style="cursor: pointer; text-decoration: none;">
+            <a (click)="navigateToSearchPage(activity.category)"
+              style="color: green; font-weight: normal;text-decoration: none;">See
+              all</a></span>
+        </h4> -->
+      <div id='Space' class="row">
+        <!--  -->
+
+        <div *ngFor="let cat of popularNewsList" class="col-lg-2 col-md-auto col-md-12 col-12 card-size mb-2">
+          <!-- <app-newscard [news]="cat"></app-newscard> -->
+          <div *ngIf="cat.picture != null">
+
+            <app-newscard [news]="cat"></app-newscard>
+          </div>
+
+          <div *ngIf="cat.picture === null">
+            <app-newscardwithoutimg [news]="cat"></app-newscardwithoutimg>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="Space">
+  </div>
+  <div class="alone" *ngIf="show" class="hmmm">
+    <div id="circularG">
+      <div id="circularG_1" class="circularG"></div>
+      <div id="circularG_2" class="circularG"></div>
+      <div id="circularG_3" class="circularG"></div>
+      <div id="circularG_4" class="circularG"></div>
+      <div id="circularG_5" class="circularG"></div>
+      <div id="circularG_6" class="circularG"></div>
+      <div id="circularG_7" class="circularG"></div>
+      <div id="circularG_8" class="circularG"></div>
+      <p style="position: relative; top: 52px; color: #466ce4;" class="loading1">Loading</p>
+      <!-- <div style="position: relative;top: 58px;font-weight: bold; color: #466ce4;" class="loader">Loading<span
+          class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span>
+      </div> -->
+    </div>
+  </div>
+
+  <div style="" *ngIf="show==false && popularNewsList == undefined">
+    <p style="text-align:center; color:#7c7c7c; font-size:22px;left: 400px;position: relative;">
+      No news to show
+    </p>
+  </div>
+</section>

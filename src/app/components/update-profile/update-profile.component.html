@@ -1,0 +1,22 @@
+<div class="login-form">
+  <form action="/examples/actions/confirmation.php" method="post">
+    <h2 class="text-center fontstyle">Update Profile</h2>
+    <div class="form-group fontstyle">
+      <label>First Name</label>
+      <input type="text" name="Fname" class="form-control" placeholder="FirstName"
+        [(ngModel)]="objUpdateProfile.first_name" required="required">
+    </div>
+    <div class="form-group fontstyle">
+      <label>Last Name</label>
+      <input type="text" name="Lname" class="form-control" placeholder="LastName"
+        [(ngModel)]="objUpdateProfile.last_name" required="required">
+    </div>
+    <div class="form-group fontstyle">
+      <label>Choose Image</label>
+      <input type="file" (change)="handleFileSelect($event)">
+    </div>
+    <div class="form-group fontstyle">
+      <button type="submit" (click)="Update()" class="btn btn-primary btn-block">Update</button>
+    </div>
+  </form>
+</div>

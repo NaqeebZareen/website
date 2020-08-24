@@ -1,0 +1,48 @@
+<section>
+  <div class="col-12">
+    <div class="row">
+
+      <div id='Space' class="row">
+
+
+        <div *ngFor="let cat of popularActivityList" class="col-lg-2 col-md-auto col-md-12 col-12 card-size mb-2">
+          <div *ngIf="cat.picture != null">
+
+            <app-search-result-card [activity]="cat"></app-search-result-card>
+          </div>
+
+          <div *ngIf="cat.picture === null">
+            <app-recmonded-card [activity]="cat"></app-recmonded-card>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="Space">
+  </div>
+  <div class="alone" class="hmmm">
+    <div id="circularG" *ngIf="show">
+      <div id="circularG_1" class="circularG"></div>
+      <div id="circularG_2" class="circularG"></div>
+      <div id="circularG_3" class="circularG"></div>
+      <div id="circularG_4" class="circularG"></div>
+      <div id="circularG_5" class="circularG"></div>
+      <div id="circularG_6" class="circularG"></div>
+      <div id="circularG_7" class="circularG"></div>
+      <div id="circularG_8" class="circularG"></div>
+      <!-- <p style="position: relative; top: 52px; color: green;" class="loading1">Loading</p> -->
+      <div style="position: relative;top: 58px;font-weight: bold; color: #466ce4;" class="loader">Loading<span
+          class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span></div>
+    </div>
+
+    <div style="text-align: center;" *ngIf="show === false && popularActivityList === null">
+      <p style="text-align:center; color:#7c7c7c; font-size:22px;left: 400px;position: relative;">
+        No activities to show
+      </p>
+    </div>
+  </div>
+
+
+</section>

@@ -1,0 +1,296 @@
+.main-wrapper {
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 5px 20px #3229410D;
+  border-radius: 5px;
+  width: 300px !important;
+}
+.hi{
+  /* height: 30px; */
+  font-family: Gilroy-Bold;    line-height: 15px; height: 0px; margin-top: 16px;
+  font-size: 13px;
+}
+.hi1{
+  text-decoration : none;color: #242424;font-size: 13px;opacity: 1;
+}
+.spc2{
+  color: #242424; font-size: 13px; height: 0px; margin-top: 24px;
+      opacity: 0.4;
+}
+.fin2{
+  margin-top: 48px;
+}
+.spc1{
+  font-size: 14px;color: #322941;font-weight: bold;    position: absolute;top: 20px;
+  left: 20px;
+}
+hr{
+  margin-top: 0rem; 
+ margin-bottom: 0rem;
+}
+.spc{
+  top: 16px;
+}
+.abc img {
+  width: 28px;
+
+}
+.abc{
+  padding-top: 8px;
+}
+.abc1
+{
+  text-align: right;
+  padding-right: 0px;
+  padding-top: 8px; 
+}
+.image
+{
+  position: relative;
+}
+.img-size
+{
+  width: 38px;
+  height: 38px;
+}
+.wishlist
+{
+  position: absolute;
+    right: 12px;
+    top: 10px;
+}
+.section-first .image {
+  height: 170px;
+  width: 300px;
+  border-radius: 4px 4px 0px 0px;
+}
+.section-second .date {
+  font-size: 13px;
+  line-height: 19px;
+  opacity: 1;
+  color: #466ce4;
+  font-weight: 400;
+}
+.section-second {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0px 0px 4px 4px;
+  height: 170px !important;
+}
+.section-second .title {
+  font-family: 'Gilroy-Medium';
+  /* font-size: 14px; */
+  line-height: 140.9%;
+  color: #000000;
+  /* height: 40px; */
+}
+.section-second .title a{
+  color: #000000;
+  font-weight: 500;
+}
+.activity-place {
+  font-size: 14px;
+}
+.newAddition
+{
+  color: #FFFFFF;
+  font-size: 70px;
+  position: relative;
+  top: 52px;
+}
+
+@media screen and (max-width: 660px)
+{
+  .title
+  {
+    font-size: 12px !important;
+    line-height: 1.5em;
+    /* height: 3em; */
+    overflow: hidden;
+ 
+    text-overflow: ellipsis;
+  }
+  .activity-place
+  {
+    font-size: 0.8rem;
+  }
+  .newAddition
+  {
+    font-size: 50px;
+  }
+  .hi{
+    height: 15px;
+    margin-top: 16px;
+  }
+  .spc2{
+    height: 32px;
+    margin-top: 16px;
+  }
+  .fin2{
+    margin-top: 24px;
+  }
+  .spc{
+    top: 12px;
+  }
+}
+
+@media screen and (max-width: 320px)
+{
+  .activity-place
+  {
+    font-size: 0.7rem;
+  }
+}
+
+
+
+
+
+
+.overlay {
+  position: absolute;
+  top: 8px;
+  bottom: 0;
+  left: 0px;
+  right: 0;
+  height: 50%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #EEEBF2;
+  
+  border-radius: 10px;
+}
+
+.abc:hover .overlay {
+  opacity: 0.8;
+
+}
+.section-second:hover{
+  box-shadow: none !important;
+}
+.text {
+  color: white;
+  font-size: 13px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
+  text-align: center;
+;
+}
+.new{
+  max-width: 130px;
+  overflow: hidden
+}
+
+
+
+.fa {
+  padding: 20px;
+  padding-top: 16px;
+  font-size: 20px;
+  width: 10px;
+  text-align: left;
+  text-decoration: none;
+  margin: 0px 0px;
+  border-radius: 50%;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+  width: 50px;
+  height: 50px;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+  width: 56px;
+  height: 56px;
+  margin-left: 10px;
+}
+.wid{
+  width: 85px;
+  height: 57px;
+  margin: -8px;
+  margin-right: 0px !important;
+  /* padding-right: 18px; */
+}
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+  width: 50px;
+  height: 50px;
+  margin-left: 10px;
+}
+
+@media screen  and (min-width: 1210px) and (max-width: 1449px)
+{
+  .section-first .image{
+    width: 260px !important;
+  }
+  .main-wrapper{
+    width: 260px !important;
+  }
+
+  .hi{
+    /* height: 35px !important; */
+  }
+
+}
+@media screen  and (min-width: 1100px) and (max-width: 1209px)
+{
+  .section-first .image{
+    width: 300px !important;
+  }
+  .main-wrapper{
+    width: 300px !important;
+  }
+
+  .hi{
+    /* height: 35px !important; */
+  }
+
+}
+
+@media screen and (max-width: 414px)
+{
+  .section-first .image{
+    width: 260px !important;
+  }
+  .main-wrapper{
+    width: 260px !important;
+  }
+  .abc{
+    padding-top: 1px !important;
+  }
+  .abc1
+  {
+    padding-top: 1px !important;
+  }
+}
+
+
+@media screen and (max-width: 320px)
+{
+  .section-first .image{
+    width: 240px !important;
+  }
+  .main-wrapper{
+    width: 240px !important;
+  }
+}

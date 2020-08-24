@@ -1,0 +1,89 @@
+<div class="col-1 strt" style="z-index: 1; left: 0px;">
+    <div class="side">
+
+        <div class="hig">
+            <button id="threee" class="btn1" (click)="click1()" [style.background]="toggle ? '#EFF1F7' : '#FAFAFA'">
+                <img style="pointer-events: inherit;" [src]="imgsrc1" class="imgpad"
+                    [ngStyle]="{'opacity': toggle ? '1' : '0.4' }">
+                <div style=" pointer-events: inherit;" class="font" id="a1"
+                    [ngStyle]="{'font-family': toggle ? 'Gilroy-Bold' : 'Gilroy-Medium','opacity': toggle ? '1' :'0.4' }">
+                    Home
+                </div>
+            </button>
+        </div>
+        <!--  -->
+        <!-- font-family: Gilroy-Bold -->
+
+        <div class="hig">
+            <button id="threee3" class="btn1" (click)="click2()" [style.background]="toggle2 ? '#EFF1F7' : '#FAFAFA'">
+                <img [src]="imgsrc2" [alt]="imgsrc2" class="imgpad" [ngStyle]="{'opacity': toggle2 ? '1' : '0.4' }">
+                <div class="font"
+                    [ngStyle]="{'font-family': toggle2 ? 'Gilroy-Bold' : 'Gilroy-Medium','opacity': toggle2 ? '1' :'0.4' }">
+                    Local
+                    news</div>
+            </button>
+        </div>
+
+        <div class="hig">
+            <button class="btn1" id="threee1" (click)="navigateToSearchPage()"
+                [style.background]="toggle1 ? '#EFF1F7' : '#FAFAFA'">
+                <img [src]="imgsrc3" alt="img" class="imgpad" [ngStyle]="{'opacity': toggle1 ? '1' : '0.4' }">
+                <div class="font"
+                    [ngStyle]="{'font-family': toggle1 ? 'Gilroy-Bold' : 'Gilroy-Medium','opacity': toggle1 ? '1' :'0.4' }">
+                    Local
+                    activities</div>
+            </button>
+        </div>
+
+
+
+
+
+        <div class="hig">
+            <button id="threee2" class="btn1" (click)="click4()" [style.background]="toggle3 ? '#EFF1F7' : '#FAFAFA'">
+                <img [src]="imgsrc4" alt="img" class="imgpad" style="padding-left: 12px;
+                padding-right: 11px;" [ngStyle]="{'opacity': toggle3 ? '1' : '0.4' }">
+                <div class="font"
+                    [ngStyle]="{'font-family': toggle3 ? 'Gilroy-Bold' : 'Gilroy-Medium','opacity': toggle3 ? '1' :'0.4' }">
+                    Saved</div>
+            </button>
+        </div>
+
+    </div>
+
+
+    <div class="down">
+
+        <span style="" class="follow">Follow us</span>
+        <div class="follow1">
+            <a (click)="FacebookLink()" class="spc">
+                <img src="../../../assets/Website_Icons/facebook.png" alt="facebook" class="img1">
+            </a>
+            <a (click)="TwitterLink()" class="spc">
+                <img src="../../../assets/Website_Icons/twitter.png" alt="twitter" class="img1">
+            </a>
+
+            <a (click)="LinkedinLink()" class="spc">
+                <img src="../../../assets/Website_Icons/linkedin.png" alt="linkdin" class="img1">
+            </a>
+
+        </div>
+        <div class="privacy"> <a (click)="pivacyPolicy()" style="color: #322941; cursor: pointer;"
+                class="privacylink">Privacy policy</a>
+        </div>
+
+        <!-- <span class="privacylink">T&Cs</span> -->
+
+
+
+
+
+    </div>
+
+    <div class="youcanllc">
+
+        <span style="padding-left: 10px;padding-top: 10px;">
+            <img src="../../../assets/Website_Icons//endfooter.png" alt=""> YouCan LLC
+        </span>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="row mb-5">
+    <div class="col-12">
+        <div class="container mb-2">
+            <div class="mt-2 mb-5 mt-4 home-wrapper-header home-wrapper-header2">
+                <h4 class="header-title" style="font-weight: bold;">{{head}}</h4>
+            </div>
+            <!-- <app-explore-more-cities></app-explore-more-cities> -->
+            <!-- <app-activity-list></app-activity-list> -->
+            <div id="Gridview">
+                <!-- <h4 class="header-title" style="font-weight: bold;font-size: 24px;margin-bottom: 30px;"> {{activity.category}}
+                    <span style="cursor: pointer; text-decoration: none;">
+                      <a (click)="navigateToSearchPage(activity.category)"
+                        style="color: green; font-weight: normal;text-decoration: none;">See
+                        all</a></span>
+                  </h4> -->
+                <div id='Space' class="row">
+                    <!--  -->
+
+                    <div *ngFor="let activity of newlyAddedList" class="col-lg-3 col-md-6 col-12 card-size mb-4">
+                        <app-listingcard [activity]="activity"></app-listingcard>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

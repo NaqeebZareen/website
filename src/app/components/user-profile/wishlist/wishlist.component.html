@@ -1,0 +1,56 @@
+<div class="row bg">
+  <div class="col-1  d-md-block left-side-interest-bar mb-3 mx-auto" style="margin-left: 0px !important;">
+    <div class="row ">
+      <app-sider-bar>
+
+      </app-sider-bar>
+    </div>
+  </div>
+
+  <div class="col-lg-11  col-sm-12 col-md-8 s-section-left mx-auto" style="padding-top: 65px;">
+    <div class="container wishlist-container" style="padding-top:0px;">
+      <div class="row mt-2">
+        <div *ngFor="let activity of activityList" id='Space' class="col-lg-4 col-md-6 col-sm-12 card-size">
+
+
+          <div class="ml-1 mr-1 ">
+
+            <app-wish-list-card [activity]="activity"></app-wish-list-card>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div id="Space">
+    </div>
+    <div class="alone">
+      <div id="circularG" *ngIf="loading==1">
+        <div id="circularG_1" class="circularG"></div>
+        <div id="circularG_2" class="circularG"></div>
+        <div id="circularG_3" class="circularG"></div>
+        <div id="circularG_4" class="circularG"></div>
+        <div id="circularG_5" class="circularG"></div>
+        <div id="circularG_6" class="circularG"></div>
+        <div id="circularG_7" class="circularG"></div>
+        <div id="circularG_8" class="circularG"></div>
+      </div>
+      <div class="container " *ngIf="noActivity === true">
+        <div style="margin-top: 15px;" class="row d-flex justify-content-center align-items-center"
+          *ngIf="noActivity === true">
+          <img src="../../../assets/Group 22.svg" alt="group" width="15%">
+
+        </div>
+
+        <div style="text-align: center;">
+          <span style="font-weight: bold; font-size: 20px;">No activities found</span>
+        </div>
+        <button (click)="navigateToSearchPage()" class="btn btn-primary show-more"
+          style="position: relative;left: 45%;margin-top: 18px;margin-bottom: 15px;background-color:#28ae60;border-color:#28ae60;">
+          Find Activities
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>

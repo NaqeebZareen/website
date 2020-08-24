@@ -1,0 +1,92 @@
+<div class="row ml-1 mr-1 mb-4 main-wrapper ">
+
+  <div class="col-12 section-first p-0">
+    <!-- [routerLink]="['activity-details', urlCategory, urltitle,activity.id]" -->
+    <a (click)="mover()">
+      <img [src]="activity.picture" class="image" alt="activity"></a>
+
+
+  </div>
+
+  <div class="col-12 section-second ">
+    <div class="row">
+      <div class="col-2 spc">
+        <span style="color: #466ce4;font-weight: bold;">{{ activity.end_date | date: ' MMM' }}</span>
+
+        <span class="spc1" style="">
+          {{ activity.end_date | date: 'dd' }}</span>
+      </div>
+      <div class="col-10">
+
+        <div class="title hi">
+          <a class="hi1" (click)="mover()">
+            {{ activity.title | slice: 0:22 }}...
+          </a>
+        </div>
+
+        <div class="title spc2" style="">
+
+          <a style="text-decoration: none;" (click)="mover()">
+            {{ activity.title | slice: 0:50 }}
+          </a>
+
+        </div>
+        <div class="date fin2" style="">
+          {{ activity.end_date | date: 'EEEE' }} , <span>{{activityStartTime}}: {{activityTimePeriods}}</span>
+          <!-- <span *ngIf="!this.activity.is_free">paid</span> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+      <div class="col-12">
+        <!-- <img src="../../../assets/searchPlace.svg" alt="search" width="20px">
+        <span class="ml-2">{{ activity.city }}</span> -->
+        <hr style="margin-bottom: 3px;opacity: 0.3; color: #EEEBF2;">
+        <div class="row no-gutters" style="height: 55px;">
+          <div class="col-6">
+            <div class="abc" style="">
+              <img src="../../../assets/Website_Icons/source.png" alt="Avatar" class="image1">
+              <div class="overlay">
+                <div class="text">
+                  <a class="text new" style="padding-left: 30px; width: 90px; color: black;height: 20px;"
+                    href="{{activity.source_link}}">{{activity.source_link}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+
+            <div class="abc1">
+              <a style="cursor:pointer;" (click)="addToWishList()">
+                <span style="padding-right: 25px; cursor: pointer;">
+                  <img *ngIf="activity.is_wishlist === false" src="../../../assets/Website_Icons/starred.png" alt=""
+                    width="28px">
+                  <img *ngIf="activity.is_wishlist === true" src="../../../assets/Website_Icons/star_selected.svg"
+                    alt="" width="28px">
+                </span>
+              </a>
+
+              <span class="dropdown-toggle wid" data-toggle="dropdown" Dropdown button>
+                <img style="cursor: pointer;" src="../../../assets/Website_Icons/shared.png" alt="" width="28px"></span>
+
+              <div class="dropdown-menu" style="min-width: 12rem;">
+
+                <button class="fa fa-facebook" (click)="facebookSharing(shareObj)"> </button>
+
+                <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?url={{url}}">
+                </a>
+
+
+                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title=YOUCANACTIVITY&summary=YourarticleSummary&source=YourarticleSource"
+                  class="fa fa-linkedin"></a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

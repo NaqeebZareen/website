@@ -1,0 +1,55 @@
+<section>
+
+  <div class="col-12 search-result mt-2 mb-5">
+    <div class="row addMarg">
+      <!-- | slice:0:totalnumber; let i = index -->
+      <div *ngFor="let activity of activityList " class="col-lg-3 col-md-5 col-12 card-size siz" style="">
+        <!-- <app-search-result-card [activity]="activity"></app-search-result-card> -->
+
+        <div *ngIf="activity.picture != null">
+
+          <app-search-result-card [activity]="activity"></app-search-result-card>
+        </div>
+
+        <div *ngIf="activity.picture === null">
+          <app-recmonded-card [activity]="activity"></app-recmonded-card>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div id="Space">
+  </div>
+  <div class="alone">
+    <div id="circularG" *ngIf="loading==1">
+      <div id="circularG_1" class="circularG"></div>
+      <div id="circularG_2" class="circularG"></div>
+      <div id="circularG_3" class="circularG"></div>
+      <div id="circularG_4" class="circularG"></div>
+      <div id="circularG_5" class="circularG"></div>
+      <div id="circularG_6" class="circularG"></div>
+      <div id="circularG_7" class="circularG"></div>
+      <div id="circularG_8" class="circularG"></div>
+      <!-- <p style="position: relative; top: 52px; color: green;" class="loading1">Loading</p> -->
+      <div style="position: relative; top: 62px;font-weight: bold; color: #466ce4;" class="loader">Loading<span
+          class="loader__dot">.</span><span class="loader__dot">.</span><span class="loader__dot">.</span></div>
+    </div>
+  </div>
+
+  <div class="container col-12" style="background: #EFF1F7">
+    <!-- <div class="row d-flex justify-content-center align-items-center" *ngIf="loading==0 && check==0">
+      <button class="btn btn-primary show-more " (click)="getMoreActivities()">
+        Load more
+      </button>
+    </div> -->
+
+    <div *ngIf="check==1" style="padding:10px;">
+      <p style="text-align:center; color:#7c7c7c; font-size:22px;">
+        Sorry, no activities of your interest <br> found in your city by us.
+      </p>
+    </div>
+
+  </div>
+</section>

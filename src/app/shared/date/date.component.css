@@ -1,0 +1,153 @@
+
+  /* //font-family: "San Francisco Display Thin"; */
+
+  .pt-3 {
+    padding-top: 0.3rem!important;
+  }
+  .pl-2 {
+  padding-left: 1rem!important;
+  }
+.header {
+  font-family: Gilroy-Medium;
+  /* color:  #466ce4 !important; */
+  font-size: 17px;
+}
+.line {
+  border: 0.5px solid #F2F2F2;
+  height: 0px;
+  left: 252px;
+  top: 388px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.container-date {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  display: inline-block;
+  margin-left: -2em;
+  line-height: 1.5em;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container-date input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #C4C4C4;
+}
+.checkmark1 {
+  top: 2px !important;
+}
+
+/* On mouse-over, add a grey background color */
+.container-date:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container-date input:checked ~ .checkmark {
+  background-color: #466ce4;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container-date input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container-date .checkmark:after {
+  position: absolute;
+    top: 4px;
+    left: 4px;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 50% solid #C4C4C4;
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+}
+.pick-date {
+  background: #FFFFFF;
+  border: 1px solid rgba(231, 231, 231, 0.5);
+  border-radius: 4px;
+}
+.start-date {
+  font-family: Gilroy-Medium;
+ font-size: 17px;
+ /* font-weight: bold; */
+ color: rgba(0, 0, 0, 0.6);
+}
+.pick-date {
+  height: calc(1em + 0.75rem + 2px) !important;
+}
+/* hide the blue outline */
+.pick-date:focus {
+  outline: 0 !important;
+  border-color: none;
+  box-shadow: none;
+}
+.icon-bg  {
+  background: #FFFFFF;
+  border: 1px solid rgba(231, 231, 231, 0.5);
+  border-radius: 4px;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+  position: relative;
+
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+  padding-right: 4%;
+  padding-top: 1%;
+}
+
+/* align glyph */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+
+
+
+body {
+  margin: 10px;
+}
+.type-date {
+  margin-bottom: -13px;
+}
+

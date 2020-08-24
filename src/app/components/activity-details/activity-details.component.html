@@ -1,0 +1,446 @@
+<!-- Actvity Details Starts From Here -->
+
+
+<main id="main" class="bg-main" style="height: 1300px !important;">
+  <div class="container" *ngIf="loading === true">
+    <div class="alone" *ngIf="loading === true" class="hmmm">
+      <div id="circularG">
+        <div id="circularG_1" class="circularG"></div>
+        <div id="circularG_2" class="circularG"></div>
+        <div id="circularG_3" class="circularG"></div>
+        <div id="circularG_4" class="circularG"></div>
+        <div id="circularG_5" class="circularG"></div>
+        <div id="circularG_6" class="circularG"></div>
+        <div id="circularG_7" class="circularG"></div>
+        <div id="circularG_8" class="circularG"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hid" style="overflow: hidden;"
+    *ngIf="loading === false && objActivityDetail.picture !== null && objActivityDetail.picture !== undefined">
+    <img class="bg-main" [src]="objActivityDetail.picture" alt=""
+      style="width: 1920px; height: 450px;-webkit-filter: blur(30px); -moz-filter: blur(30px);-o-filter: blur(30px); -ms-filter: blur(30px); filter: blur(30px);">
+  </div>
+
+  <section *ngIf="objActivityDetail.picture != null" class="overlay">
+
+    <div class="container p-5 ist" style="" *ngIf="LoadingFlag == 0">
+
+      <div class="col" *ngIf="routExist === true">
+        <ol class="breadcrumb">
+          <a href="{{previousURL}}">{{previousName}}</a>/<a href="{{currentURL}}">{{currentName}}</a>
+        </ol>
+      </div>
+
+
+
+      <div class="row bg-icons high">
+
+        <div class="col-lg-5 order-1  p-0">
+          <img [src]="objActivityDetail.picture" (error)="updateUrl($event)" class="event-pic img-fluid"
+            alt="activity" />
+        </div>
+        <div class="col-lg-7 order-2 text-right">
+          <div class="container h-100">
+            <div class="row justify-content-left align-items-left clander-time-icons">
+              <div class="monDat" style="color: #466ce4;">
+
+                {{ monthName }} {{ date }}, {{ dayName }} {{ timeHours }} {{ timePriod }}
+
+              </div>
+              <div class="" style="text-align:left;">
+                <h1 class="avtivity-title font-text" style="font-family: Gilroy-Bold; color: #322941;">
+                  {{ objActivityDetail.title}}</h1>
+
+              </div>
+              <div class="widt" style="">
+                <div class="col-12" style="padding-left: 0px;">
+                  <div class="row no-gutters" style="height: 55px;">
+                    <div class="col-4">
+                      <div class="abc" style="text-align: left; padding-top: 15px; padding-left: 7px;">
+                        <img src="../../../assets/tools-and-utensils.svg" alt="Avatar" class="image1"
+                          style="width: 16px;padding-top: 3px;">
+                        <div class="overlay1">
+                          <div class="text" style="">
+                            <a class="new" href="{{objActivityDetail.source_link}}"
+                              style="color:black;width: 102px !important;">{{objActivityDetail.source_link}}</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6 spc" style="padding-left: 100px;">
+
+                      <div class="slect" style=" ">
+                        <a style="cursor:pointer;" (click)="addToWishList()">
+                          <span *ngIf="objActivityDetail.is_wishlist === false" style="padding-right: 25px;"> <img
+                              src="../../../assets/Website_Icons/starred.png" alt="" width="35px"></span>
+
+                          <span *ngIf="objActivityDetail.is_wishlist === true" style="padding-right: 25px;"> <img
+                              src="../../../assets/Website_Icons/star_selected.png" alt="" width="35px"></span>
+
+                        </a>
+
+
+                        <span class="dropdown-toggle wid" data-toggle="dropdown" Dropdown button>
+                          <img src="../../../assets/Website_Icons/shared.png" alt="" width="35px"></span>
+
+                        <div class="dropdown-menu" style="min-width: 9rem;padding-left: 10px;">
+
+                          <button
+                            style="border: none; background: none; box-shadow: none !important;outline: none !important;"
+                            class="" (click)="facebookSharing(shareObj)">
+                            <img src="../../../assets/Website_Icons/fb.png" width="30px" alt="">
+                          </button>
+
+                          <a style="padding-left: 5px;" class="" href="https://twitter.com/intent/tweet?url={{url}}">
+                            <img src="../../../assets/Website_Icons/in.png" width="30px" alt="">
+                          </a>
+
+
+                          <a href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title=YOUCANACTIVITY&summary=YourarticleSummary&source=YourarticleSource"
+                            class="" style="padding-left: 15px; ">
+                            <img src="../../../assets/Website_Icons/ln.png" width="30px" alt="">
+                          </a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row my-5 justify-content-center">
+        <div class="col-lg-8 col-md-12">
+          <h3 class="event-name-font mb-2" style="font-family: BreeSerif-Regular;color: #322941;">Description</h3>
+          <p class="event-detail-font bloghtml">
+            {{ objActivityDetail.description }}
+          </p>
+        </div>
+
+        <div class="col-lg-4 col-md-12 one">
+          <!-- <h3 class="event-name-font mb-5">Activity host</h3> -->
+          <div class="row">
+            <div class="col" style="padding-left: 0px; font-family: BreeSerif-Regular; ">
+              <h3 style="font-size: 18px; color: #322941;">Activity location</h3>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="col-lg-4 col-md-12"> -->
+            <span *ngIf="objActivityDetail.location != null; else useAddress" class="location-font">
+              <!-- {{ objActivityDetail.location }}, {{ objActivityDetail.city }},
+              {{ objActivityDetail.country }} -->
+            </span>
+            <ng-template #useAddress>
+              <span class="adrs" style="padding-top: 2px;color: #322941;">
+                {{objActivityDetail.address}}
+              </span>
+            </ng-template>
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-lg-8 col-md-12 ">
+              <div class="row row-new">
+                <div class="wide margin-ud">
+                  <!-- <agm-map [latitude]="lat" [longitude]="lng">
+                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                  </agm-map> -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+    <!-- Activities and banner -->
+
+    <!-- <div class="container"
+      style="max-width: 960px; ;height: 90px;margin-bottom: 50px;background: #D4D4D4 0% 0% no-repeat padding-box;opacity: 1;">
+      <div class="row" style="    margin-top: 30px;">
+        <div class="col-12" style="text-align: center;padding-top: 30px; font-size: 26px;color: #9B9B9B;opacity: 1;">
+          Add Banner
+        </div>
+      </div>
+    </div> -->
+
+
+    <div class="container" id="lst" style="margin-top: 40px;">
+      <div class="row">
+        <div class="col-12"
+          style="letter-spacing: 0px;color: #322941;opacity: 1; font-size: 26px; font-weight: bold;padding-bottom: 15px;">
+
+          You may like
+
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-12">
+
+
+          <div style=''>
+            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+              (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+              (beforeChange)="beforeChange($event)">
+              <div ngxSlickItem *ngFor="let slide of slides;let activity of newlyAddedList| slice:0:4">
+                <div style="padding: 10px;">
+                  <div *ngIf="activity.picture != null">
+
+                    <app-search-result-card [activity]="activity"></app-search-result-card>
+                  </div>
+
+                  <div *ngIf="activity.picture === null">
+                    <app-recmonded-card [activity]="activity"></app-recmonded-card>
+                  </div>
+                </div>
+              </div>
+            </ngx-slick-carousel>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <section *ngIf="loading === false &&  objActivityDetail.picture === null && objActivityDetail.picture !== undefined"
+    class="overlay top2" style="top: 220px; bottom:0px;">
+
+    <div class="container p-5 ist" *ngIf="LoadingFlag == 0">
+
+      <div class="row bg-icons high smhigh">
+
+        <!-- <div class="col-lg-5 order-1  p-0">
+          <img [src]="objActivityDetail.picture" (error)="updateUrl($event)" class="event-pic img-fluid" alt="activity" />
+        </div> -->
+        <div class="col-lg-7 order-2 text-right">
+          <div class="container h-100">
+            <div class="row h-100 justify-content-left align-items-left clander-time-icons">
+              <div class="monDat" style="padding-left: 0px !important; width: 490px;">
+
+                {{ monthName }} {{ date }}, {{ dayName }} {{ timeHours }} {{ timePriod }}
+
+              </div>
+              <div class="" style="text-align:left;">
+                <h1 class="avtivity-title font-text" style="padding-left: 0px !important;font-family: Gilroy-Bold;">
+                  {{ objActivityDetail.title}}</h1>
+
+              </div>
+              <div class="widt" style="padding-left: 0px !important;">
+                <div class="col-12" style="padding-left: 0px !important;">
+                  <div class="row no-gutters" style="height: 55px;">
+                    <div class="col-4">
+                      <div class="abc" style="text-align: left; padding-top: 15px; padding-left: 7px;">
+                        <img src="../../../assets/tools-and-utensils.svg" alt="Avatar" class="image1"
+                          style="width: 16px;padding-top: 3px;">
+                        <div class="overlay1">
+                          <div class="text" style="">
+                            <a class="new" href="{{objActivityDetail.source_link}}"
+                              style="color:black;width: 102px !important;">{{objActivityDetail.source_link}}</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6 spc" style="padding-left: 100px;">
+
+                      <div class="slect" style=" ">
+                        <a style="cursor:pointer;" (click)="addToWishList()">
+                          <span *ngIf="objActivityDetail.is_wishlist === false" style="padding-right: 25px;"> <img
+                              src="../../../assets/Website_Icons/starred.png" alt="" width="35px"></span>
+
+                          <span *ngIf="objActivityDetail.is_wishlist === true" style="padding-right: 25px;"> <img
+                              src="../../../assets/Website_Icons/star_selected.png" alt="" width="35px"></span>
+
+                        </a>
+
+                        <span class="dropdown-toggle wid" data-toggle="dropdown" Dropdown button>
+                          <img src="../../../assets/Website_Icons/shared.png" alt="" width="35px"></span>
+
+                        <div class="dropdown-menu" style="min-width: 9rem;padding-left: 10px;">
+
+                          <button class=""
+                            style="border: none; background: none; box-shadow: none !important;outline: none !important;"
+                            (click)="facebookSharing(shareObj)">
+                            <img src="../../../assets/Website_Icons/fb.png" width="30px" alt="">
+                          </button>
+
+                          <a style="padding-left: 5px;" class="" href="https://twitter.com/intent/tweet?url={{url}}">
+                            <img src="../../../assets/Website_Icons/in.png" width="30px" alt="">
+                          </a>
+
+
+                          <a href="https://www.linkedin.com/shareArticle?mini=true&url={{url}}&title=YOUCANACTIVITY&summary=YourarticleSummary&source=YourarticleSource"
+                            class="" style="padding-left: 15px; ">
+                            <img src="../../../assets/Website_Icons/ln.png" width="30px" alt="">
+                          </a>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row my-5 justify-content-center">
+        <div class="col-lg-8 col-md-12">
+          <h3 class="event-name-font mb-2" style="font-family: BreeSerif-Regular;color: #322941;">Description</h3>
+          <p class="event-detail-font bloghtml">
+            {{ objActivityDetail.description }}
+          </p>
+        </div>
+
+        <div class="col-lg-4 col-md-12 one">
+          <!-- <h3 class="event-name-font mb-5">Activity host</h3> -->
+          <div class="row">
+            <div class="col" style="padding-left: 0px; font-family: BreeSerif-Regular; ">
+              <h3 style="font-size: 18px; color: #322941;">Activity location</h3>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="col-lg-4 col-md-12"> -->
+            <span *ngIf="objActivityDetail.location != null; else useAddress" class="location-font">
+              <!-- {{ objActivityDetail.location }}, {{ objActivityDetail.city }},
+              {{ objActivityDetail.country }} -->
+            </span>
+            <ng-template #useAddress>
+              <span class="adrs" style="padding-top: 2px;color: #322941;">
+                {{objActivityDetail.address}}
+              </span>
+            </ng-template>
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-lg-8 col-md-12 ">
+              <div class="row row-new">
+                <div class="wide margin-ud">
+                  <!-- <agm-map [latitude]="lat" [longitude]="lng">
+                    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+                  </agm-map> -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+    <!-- Activities and banner -->
+
+    <!-- <div class="container"
+      style="max-width: 960px; ;height: 90px;margin-bottom: 50px;background: #D4D4D4 0% 0% no-repeat padding-box;opacity: 1;">
+      <div class="row" style="    margin-top: 30px;">
+        <div class="col-12" style="text-align: center;padding-top: 30px; font-size: 26px;color: #9B9B9B;opacity: 1;">
+          Add Banner
+        </div>
+      </div>
+    </div> -->
+
+
+    <div class="container" id="lst" style="margin-top: 40px;">
+      <div class="row">
+        <div class="col-12"
+          style="letter-spacing: 0px;color: #322941;opacity: 1; font-size: 26px; font-weight: bold;padding-bottom: 15px;">
+
+          You may like
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+
+
+          <div style=''>
+            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+              (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+              (beforeChange)="beforeChange($event)">
+              <div ngxSlickItem *ngFor="let slide of slides;let activity of newlyAddedList| slice:0:4">
+                <div style="padding: 10px;">
+                  <div *ngIf="activity.picture != null">
+
+                    <app-search-result-card [activity]="activity"></app-search-result-card>
+                  </div>
+
+                  <div *ngIf="activity.picture === null">
+                    <app-recmonded-card [activity]="activity"></app-recmonded-card>
+                  </div>
+                </div>
+              </div>
+            </ngx-slick-carousel>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <!-- for side br -->
+  <section class="overlay-social-btn align-items-center show-hide" *ngIf="showSocialBtn">
+    <ul style="list-style-type: none;">
+      <div class=" btn-group-justified btn-group-sm btn-group-vertical " style="margin-left:34px;">
+        <button type="button" class="btn single-social" style="padding: 20px 15px;" (click)="gobackPage()">
+          <img class="d-flex align-items-center" src="../../../assets/back.png" alt="back" />
+        </button>
+      </div>
+    </ul>
+    <ul style="list-style-type: none;">
+      <div class=" btn-group-justified btn-group-sm btn-group-vertical " style="margin-left:30px;">
+
+
+        <button type="button" id="facebook" class="btn single-social" (click)="FacebookLink()">
+          <img src="../../../assets/Website_Icons/fb.png" alt="facebook" width="42px" />
+        </button>
+
+        <button type="button" id="insta" class="btn single-social" (click)="InstagramLink()">
+          <img src="../../../assets/Website_Icons/in.png" alt="instagram" width="42px" />
+        </button>
+
+        <button type="button" id="ln" class="btn single-social p-2" (click)="TwitterLink()">
+          <img src="../../../assets/Website_Icons/ln.png" alt="twitter" width="42px" />
+        </button>
+      </div>
+    </ul>
+  </section>
+</main>
+
+
+
+<!--  -->
+<!--  -->
+<!--  -->
+<!-- without card -->
+
+<!-- -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-filter: blur(50px) brightness(.9);
+    -ms-filter: blur(50px) brightness(.9);
+    filter: blur(50px) brightness(.9); -->

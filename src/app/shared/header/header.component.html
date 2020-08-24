@@ -1,0 +1,417 @@
+<div class="container-fluid  header-main-div">
+  <nav class="navbar " *ngIf="searchdata">
+    <a class="navbar-brand logo-margin" style="box-shadow: none !important;outline: none !important;"
+      [routerLink]="['/']">
+      <img src="../../../assets/Website_Icons/YouCan.svg" (click)="navigateToMainPage()" class="logo-img logo-navbar"
+        alt="logo">
+    </a>
+    <ul class="mt-3 ml-5 nav nav-pills justify-content-start cities" *ngIf="showSearchBar">
+      <div>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle btnA" type="button" data-toggle="dropdown" style="cursor: pointer;box-shadow: none !important;
+          outline: none !important;">
+            <span class="caret"></span>
+            <img src="../../../assets/Website_Icons/location.svg" class="loc-vec" alt="">
+            <span *ngIf="searchInputCity ==''"> </span>
+            <span *ngIf="searchInputCity != ''" class="home-cities siz"
+              style="color: #322941;">{{searchInputCity}}</span>
+          </button>
+          <ul class="dropdown-menu" style="min-width: 13rem;">
+            <button (click)="selectSearchCity(city)" ngDefaultControl style="padding: .35rem 1.5rem;"
+              class="dropdown-item fontstyle" *ngFor="let city of suggestedCities; let i = index">
+              {{city}}
+            </button>
+          </ul>
+        </div>
+      </div>
+    </ul>
+    <!-- <ul class="mt-4">
+    </ul> -->
+    <div *ngIf="showSearchBar" style="border-left: 1px solid #EEEBF2;height: 20px;" class="vl"></div>
+    <ul class="mr-auto mt-4 ml-2 nav nav-pills justify-content-start srch" *ngIf="showSearchBar">
+      <div class="input-group">
+        <!-- Actual search box -->
+        <div class="has-search">
+          <span class="form-control-feedback form-control-feedback-search">
+            <i><img src="../../../assets/Website_Icons/searchicon.png" alt="headersearch"></i>
+          </span>
+          <!-- important must see <input (keyup.Space)= "doSomething()" (keyup.enter) ="doSomething()"> -->
+          <input type="text" class="form-control form-control-feedback-search border-0 search-input"
+            id="searchFieldText" placeholder="Type here to search" (keyup.Space)="typedTitle('abc')"
+            (keyup.enter)="typedTitle('abc')" [(ngModel)]="searchText">
+        </div>
+        <!-- (ngModelChange)='typedTitle("acb")'  -->
+      </div>
+    </ul>
+
+    <ul class="nav nav-pills justify-content-end  nab-bar-font">
+
+      <li class="nav-item hidePicBtn mt-1">
+
+        <div class="dropdown show drpdwn" style="">
+
+          <button class="nav-link btn btn-secondary dropdown-toggle newcls" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="border:0px solid #000;cursor: pointer;">
+            <span style="padding-right: 10px;">
+              <img src="../../../assets/Website_Icons/downloadapp.png" alt="downloadapp">
+            </span>
+            Download app</button>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" style="cursor: pointer;" (click)='getWindowsMobileOperatingSystem()'>
+              <span style="padding-right: 10px;cursor: pointer;"> <img src="../../../assets/Website_Icons/android.png"
+                  alt="android"></span>
+              For Android</a>
+            <a class="dropdown-item" style="cursor: pointer;" (click)='getMobileOperatingSystem()'>
+              <span style="padding-right: 10px;cursor: pointer;"> <img src="../../../assets/Website_Icons/iphone.png"
+                  alt="iphone"></span>
+              For iPhone</a>
+
+          </div>
+        </div>
+      </li>
+
+      <li class="nav-item hidePicBtn mt-1" *ngIf="!isLogin" style="cursor: pointer;">
+        <a class="nav-link " (click)="getlogin()">Sign In</a>
+        <hr class="underline">
+      </li>
+
+      <li class="nav-item srch1">
+        <img src="../../../assets/Website_Icons/searchicon.png" style="width: 18px;" alt="" (click)="headerOF()">
+
+
+      </li>
+
+
+      <li class="nav-item">
+        <div class="navbar navbar-brand nav-pic ">
+          <button *ngIf="isLogin" class="btn Group hidePicBtn" type="button" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <img [src]="objUser.picture" class="profile-pic" alt="profilepic" (error)="updateUrl($event)">
+          </button>
+          <!-- <i class="fa fa-bars show3dots show3dots-btn ml-1" aria-expanded="false" data-toggle="dropdown"
+            aria-haspopup="true"></i>
+
+          <div class="dropdown-menu dropdown-menu-right fontstyle header-dropdown">
+            <button class="dropdown-item" *ngIf="isLogin"
+              (click)="navigateToUserWishlistedActivities()">Profile</button>
+            <button class="dropdown-item" (click)="navigateToLoginPage()" *ngIf="!isLogin">Sign In</button>
+            <button class="dropdown-item" href="#" *ngIf="isLogin" (click)='logOutUser()'>Logout</button>
+          </div> -->
+          <input type="checkbox" id="sidebar-toggle-input" class="show3dots show3dots-btn ml-1 dsp"
+            (click)="sidenave()" />
+          <label class="sidebar-toggle dsp" for="sidebar-toggle-input"></label>
+          <div class="sidebar" id="abc" *ngIf="sidenav">
+            <div class="">
+              <div class="" style="padding-left: 15px;padding-top: 15px;">
+
+
+                <div>
+                  <button class="btttn" id="home" (click)="navigateToMainPage()">
+                    <img src="../../../assets/Website_Icons/home_unselected.svg" alt="">
+                    <span class="spn">Home</span>
+                  </button>
+                </div>
+
+
+                <div>
+                  <button class="btttn" id="local" (click)="navigateToRegisterPage()">
+                    <img src="../../../assets/Website_Icons/eventunselected.png" alt="">
+                    <span class="spn">Local activities</span>
+                  </button>
+                </div>
+
+
+                <div>
+                  <button class="btttn" (click)="navigateToNewsPage()">
+                    <img src="../../../assets/Website_Icons/newsunselected.png" alt="">
+                    <span class="spn">Local news</span>
+                  </button>
+                </div>
+
+
+                <div>
+                  <button class="btttn" (click)="navigateToNewWishlistedActivities()">
+                    <img src="../../../assets/Website_Icons/star.png" alt="">
+                    <span class="spn">Saved</span>
+                  </button>
+                </div>
+
+
+                <div>
+                  <button class="btttn" (click)="getOs()" style="cursor: pointer;">
+                    <img src="../../../assets/Website_Icons/downloadapp.png" alt="">
+                    <span class="spn">Download app</span>
+                  </button>
+                </div>
+
+
+                <div style="padding-top: 16px;
+                padding-bottom: 16px;">
+                  <button (click)="getlogin()" class="btttn" style="width: 344px;cursor: pointer;
+                  height: 40px;background-color: #FFC400;color: #322941; font-family: Gilroy-Bold; font-size: 14px;">
+                    Create an account
+                  </button>
+                </div>
+
+
+              </div>
+              <hr style="margin-top: 0px;">
+              <div style="padding-left: 15px;padding-bottom: 15px;">
+                <div style="color: #322941;
+                opacity: 0.4;font-family:Gilroy-Medium;font-size: 15px;padding-bottom: 8px;">
+                  Follow us:
+                </div>
+                <div>
+
+                  <span class="socl" (click)="FacebookLink()">
+                    <img src="../../../assets/Website_Icons/facebook.png" alt="">
+                  </span>
+                  <span class="socl" (click)="TwitterLink()">
+                    <img src="../../../assets/Website_Icons/twitter.png" alt="">
+                  </span>
+                  <span class="socl" (click)="LinkedinLink()">
+                    <img src="../../../assets/Website_Icons/linkedin.png" alt="">
+                  </span>
+                </div>
+                <div (click)="pivacyPolicy()" style="color: #322941;
+                opacity: 0.4;font-family:Gilroy-Medium;font-size: 15px;padding-top: 8px;">
+                  Privacy policy
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <nav class="nav-bar" *ngIf="!searchdata">
+    <ul style="padding-left: 15px; margin-top: 14px;">
+      <li style="list-style-type: none;">
+        <div class="h-100 srch1">
+
+          <img src="../../../assets/Website_Icons/chevron-right.svg" alt="" (click)="headerON()">
+          <input class="search_input" type="text" name="" (keyup.Space)="typedTitle('abc')"
+            (keyup.enter)="typedTitle('abc')" [(ngModel)]="searchText" placeholder="Search here">
+          <img src="../../../assets/Website_Icons/searchicon.png" alt=""
+            style="position: absolute;right: 15px;top: 17px;">
+        </div>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+
+<!--  -->
+<!--  -->
+<!--  -->
+<!--  -->
+<button #myModalLogin data-toggle="modal" data-target="#myModalLogin" style="display: none;"></button>
+<div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  style="top: 40%;">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div *ngIf="verfication == false" class="col-xl-12 col-lg-12 col-md-12">
+
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                style="position: relative; top: 13px;left: 13px;">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center pb-3 text-login">
+            <div class="row">
+              <div class="col">
+                <span>Join Now</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center py-3">
+            <div class="row">
+              <div class="col">
+                <button class="col btn social-login-bg" (click)="socialSignIn('google')">
+                  <img style="padding-bottom: 3px;" src="../../../assets/google_icon.png" width="20">
+                  <span class="social-login-text" style="margin-left:10px;">Join with Google</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center pt-3 pb-4">
+            <div class="row">
+              <div class="col font-use or">
+                <div class="line" style="display:inline-block;"></div>
+                <div style="display:inline-block;">OR</div>
+                <div class="line" style="display:inline-block;"></div>
+              </div>
+            </div>
+          </div>
+
+          <form #loginForm="ngForm">
+            <div class=" d-flex justify-content-center pt-3">
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input type="text" [(ngModel)]="objLogin.username" class="form-control input-email"
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" name="email" ngModel
+                      #emailref="ngModel" required="required" placeholder="Enter your email">
+                    <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="pass-feedback">
+                      <div [hidden]="!emailref.errors?.pattern">
+                        Enter valid email e.g abc@xyz.com
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div id="circularG" *ngIf="loading==1">
+              <div id="circularG_1" class="circularG"></div>
+              <div id="circularG_2" class="circularG"></div>
+              <div id="circularG_3" class="circularG"></div>
+              <div id="circularG_4" class="circularG"></div>
+              <div id="circularG_5" class="circularG"></div>
+              <div id="circularG_6" class="circularG"></div>
+              <div id="circularG_7" class="circularG"></div>
+              <div id="circularG_8" class="circularG"></div>
+            </div>
+
+
+            <div class="d-flex justify-content-center">
+              <div class="row">
+                <div class="col font-use alert-text ">
+                  <p>{{isLoginCheck}}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <div class="row">
+                <div class="col form-group">
+                  <button type="submit" (click)="login()" [disabled]="!loginForm.form.valid" style="cursor: pointer;"
+                    class="btn btn-primary login-btn font-use ">Join</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="d-flex justify-content-center" style="padding-top:50px;">
+            <div class="row">
+              <div class="col font-use2 term-condition ">
+
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!-- for verification code -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+
+      <div *ngIf="verfication==true" class="col-xl-12 col-lg-12 col-md-12">
+
+        <div class="container">
+          <div class="row">
+            <div class="col">
+
+            </div>
+          </div>
+          <div class="d-flex justify-content-center text-login" style="margin-top: 60px;">
+            <div class="row">
+              <div class="col">
+                <span>Verification Code</span>
+              </div>
+            </div>
+          </div>
+
+
+          <form #loginForm="ngForm">
+            <div class=" d-flex justify-content-center pt-3">
+              <div class="row">
+
+                <div class="col">
+
+                  <div id="form">
+                    <input class="inp" [(ngModel)]="val1" (keyup)="keytab($event, 1)" name="v1" type="text"
+                      maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <input class="inp" [(ngModel)]="val2" name="v1" (keyup)="keytab($event, 1)" type="text"
+                      maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <input class="inp" [(ngModel)]="val3" name="v1" (keyup)="keytab($event, 1)" type="text"
+                      maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <input class="inp" [(ngModel)]="val4" name="v1" (keyup)="keytab($event, 1)" type="text"
+                      maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <button (click)="verify()" class="btn11 btn-primary btn-embossed">Continue</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div *ngIf="verfiy1 === true" class="d-flex justify-content-center" style="margin-bottom: 20px;">
+              <div class="row" style="color:red;">
+                You have entered invalid number
+              </div>
+            </div>
+
+            <div *ngIf="isTrue == false" class="d-flex justify-content-center">
+              <div class="row">
+                <div class="col form-group">
+                  <button type="submit" (click)="login()" [disabled]="!loginForm.form.valid" style="cursor: pointer;"
+                    class="btn btn-primary login-btn font-use ">JOIN</button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="verfication == true" class="d-flex justify-content-center" style="margin-bottom: 100px;">
+              <div class="row">
+                <div class="col form-group">
+                  Didn't receive an OTP? <a style="color:#466ce4" (click)="back()">Click here</a>
+
+
+
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="row bg">
+  <div class="col-1  d-md-block left-side-interest-bar mb-3" style="margin-left: 0px !important;">
+    <div class="row ">
+      <app-sider-bar>
+
+      </app-sider-bar>
+    </div>
+  </div>
+
+  <div class="col-lg-11  col-sm-12 col-md-8 s-section-left styl" style="">
+
+    <div class="container-fluid f-bg pt-2" style="padding-left: 0px; padding-right: 0px;">
+      <!-- <div class="col-sm-11"> -->
+      <div class="row">
+
+        <div class="col-lg-12 col-sm-12 setting">
+
+          <ul class="navbar-nav mr-auto mt-lg-0 ml-5">
+            <li class="nav-item" style="">
+              Saved activities and news
+            </li>
+
+          </ul>
+          <div class="mt-3" style="margin-left: -37px !important;">
+            <section style="margin-bottom: 10rem;">
+              <div class="container wishlist-container" style="padding-top:0px;margin-right: 4px;">
+                <div class="row mt-2">
+                  <div *ngFor="let activity of activityList" id='Space' class="col-lg-2 col-md-6 col-sm-12 card-size">
+
+
+                    <div class="ml-1 mr-1 ">
+
+                      <app-wish-list-card [activity]="activity"></app-wish-list-card>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="container wishlist-container" style="padding-top:0px;">
+                <div class="row mt-2">
+                  <div *ngFor="let newss of newsList" id='Space' class="col-lg-3 col-md-6 col-sm-12 card-size">
+
+
+                    <div class="ml-1 mr-1 ">
+
+
+                      <div *ngIf="newss.picture != null">
+
+                        <app-newscard [news]="newss"></app-newscard>
+                      </div>
+
+                      <div *ngIf="newss.picture === null">
+                        <app-newscardwithoutimg [news]="newss"></app-newscardwithoutimg>
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div id="Space">
+              </div>
+              <div class="alone">
+                <div id="circularG" *ngIf="loading==1">
+                  <div id="circularG_1" class="circularG"></div>
+                  <div id="circularG_2" class="circularG"></div>
+                  <div id="circularG_3" class="circularG"></div>
+                  <div id="circularG_4" class="circularG"></div>
+                  <div id="circularG_5" class="circularG"></div>
+                  <div id="circularG_6" class="circularG"></div>
+                  <div id="circularG_7" class="circularG"></div>
+                  <div id="circularG_8" class="circularG"></div>
+                </div>
+                <div class="container " *ngIf="noActivity === true && noNews === true">
+                  <div style="margin-top: 15px;" class="row d-flex justify-content-center align-items-center"
+                    *ngIf="noActivity === true && noNews === true">
+                    <img src="../../../assets/Group 22.svg" alt="group" width="15%">
+
+                  </div>
+
+                  <div style="text-align: center;">
+                    <span style="font-weight: bold; font-size: 20px;">No activities and news found</span>
+                  </div>
+                  <button (click)="navigateToSearchPage()" class="btn btn-primary show-more"
+                    style="position: relative;left: 45%;margin-top: 18px;margin-bottom: 15px;background-color:#466ce4;border-color:#466ce4;">
+                    Find Activities
+                  </button>
+                </div>
+              </div>
+            </section>
+
+
+
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+
+    </div>
+
+  </div>
+</div>

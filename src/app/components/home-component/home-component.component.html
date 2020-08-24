@@ -1,0 +1,105 @@
+<div class="row mb-5" style="overflow-x: hidden;">
+
+  <div class="col-1">
+    <app-sider-bar>
+
+    </app-sider-bar>
+  </div>
+
+
+  <div class="col-11 pos">
+    <div class="row  main-wrapper">
+      <img class="search-bg-img" src="../../../assets/Website_Icons/banner.png" alt="banner-01">
+      <app-home-suggested-interest class="display"></app-home-suggested-interest>
+      <div class="container" class="main1">
+        <div class="mt-5 mb-5 home-wrapper-header home-wrapper-header2 ">
+          <h4 class="header-title">
+            <!-- Local activities -->
+            Local news
+
+            <span style="cursor: pointer; ">
+              <button (click)="navigateToNewsPage()" class="seeall">
+                <span style="" class="seealltext">See all <img class="seeallimg"
+                    src="../../../assets/Website_Icons/viewall.svg" alt=""></span>
+              </button>
+
+              <a (click)="navigateToNewsPage()" class="smallscreen">See all</a>
+
+            </span>
+
+          </h4>
+        </div>
+        <app-newslisting></app-newslisting>
+        <!-- <app-popular-activity-list></app-popular-activity-list> -->
+      </div>
+
+
+
+    </div>
+
+    <!--  -->
+    <!--  -->
+    <!-- For News -->
+
+
+    <div class="row  main-wrapper">
+      <!-- <img class="search-bg-img" src="../../../assets/Website_Icons/Banner.png" alt="banner-01">
+      <app-home-suggested-interest></app-home-suggested-interest> -->
+      <div class="container" class="main1 hightset">
+        <div class="mb-4 mt-4 home-wrapper-header home-wrapper-header2 sz">
+          <h4 class="header-title" style="">
+            <!-- Local news -->
+            Local activities
+            <span style="cursor: pointer; ">
+              <button (click)="navigateToSearchPage()" class="seeall">
+                <span class="seealltext">See all <img class="seeallimg seeallimg1"
+                    src="../../../assets/Website_Icons/viewall.svg" style="" alt=""></span>
+              </button>
+
+              <a (click)="navigateToSearchPage()" class="smallscreen">See all</a>
+
+            </span>
+
+          </h4>
+        </div>
+        <app-popular-activity-list></app-popular-activity-list>
+        <!-- <app-newslisting></app-newslisting> -->
+      </div>
+
+
+
+    </div>
+
+
+    <!--  -->
+    <!--  -->
+    <!--  -->
+  </div>
+
+
+  <!-- <div class="col-11 pos" *ngIf="listingView === true">
+    <div class="row  main-wrapper">
+      <img class="search-bg-img" src="../../../assets/bannerhome.png" alt="banner-01">
+      <app-home-suggested-interest></app-home-suggested-interest>
+      <div class="container" class="main1">
+        <div class="mt-5 mb-5 home-wrapper-header home-wrapper-header2 ">
+          <h4 class="header-title" style="">Search Events<span style="cursor: pointer; ">
+              <button (click)="navigateToSearchPage()" class="seeall" style="background: none;">
+                <img src="../../../assets/Website_Icons/seeall.svg" alt="">
+             
+              </button>
+ 
+            </span>
+
+          </h4>
+        </div>
+
+
+        <app-searchlisting></app-searchlisting>
+        <app-homesearchlisting></app-homesearchlisting>
+      </div>
+    </div>
+  </div> -->
+
+
+</div>

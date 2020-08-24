@@ -1,0 +1,99 @@
+<div class="row bg" style="overflow-x: hidden;">
+
+  <div class="col-1  d-md-block left-side-interest-bar mb-3 mx-auto" style="margin-left: 0px !important;">
+    <div class="row ">
+      <app-sider-bar>
+
+      </app-sider-bar>
+    </div>
+  </div>
+
+
+  <div class="col-lg-11 col-sm-12 col-md-8 s-section-left mx-auto" style="padding-top: 65px;">
+    <div class=" row">
+      <div class="col-12 filter-by filtr"
+        style="height: 65px;position: fixed;background: #EFF1F7; background-color: #EFF1F7; z-index: 1;top: 52px;">
+        <div>
+          <span class="eventsfor" style="font-family: BreeSerif-Regular;">Local activities</span>
+          <ul class="filter-list-group">
+
+            <li class="list-group-item">
+              <div class="list-group-item">
+                <!-- <div class='containerDiv'>
+                  <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset"
+                    [showIndicators]="false" [noWrap]="noWrap" [interval]="false" [startFromIndex]="0" id="carousel1"
+                    (slideRangeChange)="onSlideRangeChange($event)" freeScroll=true wrapAround=true>
+                    <slide class="slide" style="" *ngFor="let slide of slides; let interest of list; let index=index;">
+
+                      <div class="carousel-caption tab">
+
+                        <button [ngClass]="{'active': tabIndex === index}" (click)="onTabClick(index)"
+                          (click)="selectSearchInterest(interest)">{{interest}}
+                        </button>
+
+                      </div>
+                    </slide>
+                  </carousel>
+                </div> -->
+
+                <div class="cata-sub-nav">
+                  <div class="nav-prev arrow" style="display: none; cursor: pointer;"><img
+                      src="../../../assets/Website_Icons/chevron-right.svg" alt=""></div>
+
+                  <ul class="start">
+                    <li *ngFor="let interest of result; let i=index2" [ngClass]="{'active': selectedIndex === i}">
+
+                      <button (click)="selectSearchInterest(interest[0]); select(i)" style="  box-shadow: none !important;
+                      outline: none !important; border:none; " class="nav-item">{{interest[0]}}
+                        ({{interest[1]}})</button>
+                    </li>
+
+                    <!-- <li *ngFor="let res of result" style="    position: absolute;
+                    left: 86px;">
+                      <span class="nav-item">res</span>
+                    </li> -->
+
+                  </ul>
+                  <div class="nav-next arrow" style="cursor: pointer;"><img
+                      src="../../../assets/Website_Icons/chevron-left.svg" alt="">
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              <div class="dropdown show drpdwn" style="">
+                <button class="btn btn-secondary dropdown-toggle newcls" href="#" role="button" id="dropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  style="height: 30px;padding-top: 3px;    margin-top: 13px;">
+                  <img _ngcontent-serverapp-c344="" src="../../../assets/Website_Icons/interface.svg" alt="" class="">
+                  <Span style="float: none;font-size: 13px;"> Date</Span>
+                  <img style="float: right;float: right;padding-top: 10px;"
+                    src="../../../assets/Website_Icons/dropd.svg" alt="">
+                </button>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <app-date (notify)="selectSearchDate($event)" [searchInputDates]="searchInputDates"></app-date>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+
+
+
+
+
+        </div>
+
+      </div>
+      <div class="col-12 check" style="margin-top: 60px;">
+        <app-activity-list></app-activity-list>
+      </div>
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+  </div>
+
+</div>

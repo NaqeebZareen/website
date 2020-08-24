@@ -1,0 +1,33 @@
+<app-header *ngIf="hideShowFooterHeader" (notify)="searchByTitle($event)" [showSearchBar]="showSearchBar"></app-header>
+<router-outlet></router-outlet>
+
+
+<button #myModal data-toggle="modal" data-target="#myModal" style="display: none;"></button>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    style="top: 40%;">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+                <img src="../../assets/Website_Icons/YouCan.svg" style="width: 116px; height: 35px;" alt="">
+                <div style="width: auto;height: 42;letter-spacing: 0px;
+                color: #322941;
+                opacity: 0.4;font-size: 16px;font-family: Gilroy-Medium;margin-top: 18px;
+    margin-bottom: 18px;">
+                    For a personalized experience please download our app
+                </div>
+                <div>
+                    <button (click)="getOs()"
+                        style="padding:10px;color: #322941;background:#FBB701;border-radius: 5px;opacity: 1;width: 300px;box-shadow: none !important;outline: none !important;border: none; font-family: Gilroy-Bold;font-size: 14px;">
+                        Download the free app</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

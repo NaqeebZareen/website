@@ -1,0 +1,215 @@
+<section>
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-xl-8 col-lg-8 col-md-12 bg">
+        <div class="d-flex justify-content-left my-5">
+          <div class="d-flex align-items-center front-img-text-larg front-img-position">Let's unleash the true
+            potential of
+            your life.</div>
+        </div>
+        <div class="d-flex align-items-center front-imag-text-small">
+
+        </div>
+      </div>
+      <div *ngIf="verfication == false" class="col-xl-4 col-lg-4 col-md-12">
+
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <button type="button" class="close" aria-label="Close" (click)="goBack()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center pb-3 text-login">
+            <div class="row">
+              <div class="col">
+                <span>Join Now</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center py-3">
+            <div class="row">
+              <div class="col">
+                <button class="col btn social-login-bg" (click)="socialSignIn('google')">
+                  <img style="padding-bottom: 3px;" src="../../../assets/google_icon.png" width="20">
+                  <span class="social-login-text" style="margin-left:10px;">Join with Google</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center pt-3 pb-4">
+            <div class="row">
+              <div class="col font-use or">
+                <div class="line" style="display:inline-block;"></div>
+                <div style="display:inline-block;">OR</div>
+                <div class="line" style="display:inline-block;"></div>
+              </div>
+            </div>
+          </div>
+
+          <form #loginForm="ngForm">
+            <div class=" d-flex justify-content-center pt-3">
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <input type="text" [(ngModel)]="objLogin.username" class="form-control input-email"
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" name="email" ngModel
+                      #emailref="ngModel" required="required" placeholder="Email">
+                    <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="pass-feedback">
+                      <div [hidden]="!emailref.errors?.pattern">
+                        Enter valid email e.g abc@xyz.com
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div id="circularG" *ngIf="loading==1">
+              <div id="circularG_1" class="circularG"></div>
+              <div id="circularG_2" class="circularG"></div>
+              <div id="circularG_3" class="circularG"></div>
+              <div id="circularG_4" class="circularG"></div>
+              <div id="circularG_5" class="circularG"></div>
+              <div id="circularG_6" class="circularG"></div>
+              <div id="circularG_7" class="circularG"></div>
+              <div id="circularG_8" class="circularG"></div>
+            </div>
+
+
+            <div class="d-flex justify-content-center">
+              <div class="row">
+                <div class="col font-use alert-text ">
+                  <p>{{isLoginCheck}}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <div class="row">
+                <div class="col form-group">
+                  <button type="submit" (click)="login()" [disabled]="!loginForm.form.valid" style="cursor: pointer;"
+                    class="btn btn-primary login-btn font-use ">JOIN</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="d-flex justify-content-center" style="padding-top:50px;">
+            <div class="row">
+              <div class="col font-use2 term-condition ">
+
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!-- for verification code -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <div *ngIf="verfication==true" class="col-xl-4 col-lg-4 col-md-12">
+
+        <div class="container">
+          <div class="row">
+            <div class="col">
+
+            </div>
+          </div>
+          <div class="d-flex justify-content-center text-login" style="margin-top: 120px;">
+            <div class="row">
+              <div class="col">
+                <span>Verification Code</span>
+              </div>
+            </div>
+          </div>
+
+
+          <form #loginForm="ngForm">
+            <div class=" d-flex justify-content-center pt-3">
+              <div class="row">
+
+                <div class="col">
+
+                  <div id="form">
+                    <input class="inp" [(ngModel)]="val1" (keyup)="keytab($event, 1)" name="v1" type="text"
+                      maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <input class="inp" [(ngModel)]="val2" name="v1" (keyup)="keytab($event, 1)" type="text"
+                      maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <input class="inp" [(ngModel)]="val3" name="v1" (keyup)="keytab($event, 1)" type="text"
+                      maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <input class="inp" [(ngModel)]="val4" name="v1" (keyup)="keytab($event, 1)" type="text"
+                      maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+                    <button (click)="verify()" class="btn11 btn-primary btn-embossed">continue</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div *ngIf="verfiy1 === true" class="d-flex justify-content-center" style="margin-bottom: 20px;">
+              <div class="row" style="color:red;">
+                You have entered invalid number
+              </div>
+            </div>
+
+            <div *ngIf="isTrue == false" class="d-flex justify-content-center">
+              <div class="row">
+                <div class="col form-group">
+                  <button type="submit" (click)="login()" [disabled]="!loginForm.form.valid" style="cursor: pointer;"
+                    class="btn btn-primary login-btn font-use ">JOIN</button>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="verfication == true" class="d-flex justify-content-center">
+              <div class="row">
+                <div class="col form-group">
+                  Didn't receive an OTP? <a style="color:#466ce4" (click)="back()">Click here</a>
+
+
+
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</section>
