@@ -29,6 +29,6 @@ export class SEOService {
         "content-type": "application/json"
       })
     };
-    return this.http.post(this.srvApiEndpointService.apiEndPoints.Activity.GetMetaData, { url, httpAuthenticationHeader });
+    return this.http.post(this.srvApiEndpointService.apiEndPoints.Activity.GetMetaData, { url });
   }
 }

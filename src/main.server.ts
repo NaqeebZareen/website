@@ -4,6 +4,8 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
+
+  // console.log(window.location, "Main server");
 }
 
 export { AppServerModule } from './app/app.server.module';

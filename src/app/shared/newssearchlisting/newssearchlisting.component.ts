@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'src/app/services/jwtHelper/jwt-helper.service';
 import { LocalStorageFactoryService } from 'src/app/services/localStorageFactory/local-storage-factory.service';
@@ -107,6 +107,7 @@ export class NewssearchlistingComponent implements OnInit {
       else {
         res['response'].data['news_data'].forEach(element => {
           this.activityList.push(element);
+
         });
       }
     });
@@ -139,6 +140,7 @@ export class NewssearchlistingComponent implements OnInit {
         this.activityList = res['response'].data['news_data'];
 
         this.loading = 0;
+        // this.window['prerenderReady'] = true;
       }
 
 

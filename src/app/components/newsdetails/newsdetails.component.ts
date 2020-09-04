@@ -222,34 +222,36 @@ export class NewsdetailsComponent implements OnInit {
     this.showSocialBtn = true;
     this.userId = this.srvLocalStorageFactory.getfromLocalStorage(DBkeys.USER_ID);
     // call to activity api to get details of activity 
-    if (this.isHosting == true) {
-      this.srvHostingService.getHostingNewsDetailsEndpoint(this.newsId).subscribe(res => {
-        // console.log('ssss', res);
-        this.objNewsDetail = res['response'].data['news_detail'];
-        // this.objActivityDetail.cover = null;
-        // console.log(this.objNewsDetail.summary);
-        this.LoadingFlag = 0;
-        this.loading = false;
-        // console.log('ssss', res);
-        this.myTitle = this.objNewsDetail.title;
-        this.meta.addTag({ name: 'Discovery', content: this.myTitle });
-        // console.log(this.myTitle);
-        // condition to show wishlist diffrent pics
-        if (this.objNewsDetail.is_bookmarked) {
-          this.showImage = true;
-        } else { this.showImage = false }
 
-        // this.lat = parseFloat(this.objActivityDetail.latitude);
-        // this.lng = parseFloat(this.objActivityDetail.longitude);
-        // if (!this.objActivityDetail.price) {
-        //   this.objActivityDetail.price = "Free";
-        // }
-        // call to fnc to formate date/time
-        this.momentTimeformate(this.objNewsDetail.publication_date, this.objNewsDetail.publication_date);
-        // add default pics 
-        this.addDefaultPic();
+    var token = localStorage.getItem("access_token");
+    if (token === null || token === undefined) {
+      timer(5000).subscribe(res => {
+        this.srvHostingService.getHostingNewsDetailsEndpoint(this.newsId).pipe(takeUntil(this.unsubscribe))
+          .subscribe(res => {
+            // console.log('ssss1', res);
+            this.objNewsDetail = res['response'].data['news_detail'];
+            // console.log(this.objNewsDetail);
+            // console.log(this.objNewsDetail.summary);
+            var now = moment(new Date()); //todays date
+            var end = moment(this.objNewsDetail.publication_date); // another date
+            this.newstotalhours = now.diff(end, 'hours');
+            this.newlyAddedList = res['response'].data['similar_news']
+            // console.log(this.objNewsDetail);
+            this.myTitle = this.objNewsDetail.title;
+            this.meta.addTag({ name: 'Discovery', content: this.myTitle });
+
+            this.LoadingFlag = 0;
+            this.loading = false;
+
+            this.momentTimeformate(this.objNewsDetail.publication_date, this.objNewsDetail.publication_date);
+            // add default pics 
+            this.addDefaultPic();
+
+
+          });
       });
-    } else {
+    }
+    else {
       this.srvHostingService.getHostingNewsDetailsEndpoint(this.newsId).pipe(takeUntil(this.unsubscribe))
         .subscribe(res => {
           // console.log('ssss1', res);
@@ -273,10 +275,12 @@ export class NewsdetailsComponent implements OnInit {
 
 
         });
-
-
-
     }
+
+
+
+
+
 
     this.url1 = "https://www.youcan.tech/" + this.page;
     this.url = "https://www.youcan.tech/" + this.page;
@@ -489,6 +493,10 @@ export class NewsdetailsComponent implements OnInit {
   addVoteToNews = () => {
 
     if (this.objNewsDetail.positive_voted === true) {
+      this.objNewsDetail.positive_voted = false;
+      this.objNewsDetail.negative_voted = false;
+
+      this.objNewsDetail.unsure = false;
 
       this.srvActivityService.deleteUpVoteEndPoint(this.objNewsDetail.id).subscribe(res => {
 
@@ -500,6 +508,10 @@ export class NewsdetailsComponent implements OnInit {
       return;
     }
     else if (this.objNewsDetail.positive_voted === null || this.objNewsDetail.positive_voted === false) {
+
+      this.objNewsDetail.positive_voted = true;
+      this.objNewsDetail.negative_voted = false;
+      this.objNewsDetail.unsure = false;
       this.srvActivityService.addVoteToNewsEndPoint(this.objNewsDetail.id).subscribe(res => {
         this.objNewsDetail.negative_percentage = res['response'].data[0].negative_percentage;
         this.objNewsDetail.negative_votes = res['response'].data[0].negative_votes;
@@ -516,7 +528,10 @@ export class NewsdetailsComponent implements OnInit {
   notSureVoteToNews = () => {
 
     if (this.objNewsDetail.unsure === true) {
+      this.objNewsDetail.positive_voted = false;
+      this.objNewsDetail.negative_voted = false;
 
+      this.objNewsDetail.unsure = false;
       this.srvActivityService.deleteNotSureVoteEndPoint(this.objNewsDetail.id).subscribe(res => {
         this.objNewsDetail.unsure_percentage = res['response'].data[0].unsure_percentage;
         this.objNewsDetail.unsure_votes = res['response'].data[0].unsure_votes;
@@ -528,6 +543,9 @@ export class NewsdetailsComponent implements OnInit {
       return;
     }
     else if (this.objNewsDetail.unsure === null || this.objNewsDetail.unsure === false) {
+      this.objNewsDetail.unsure = true;
+      this.objNewsDetail.positive_voted = false;
+      this.objNewsDetail.negative_voted = false;
       this.srvActivityService.addNotSureVoteEndPoint(this.objNewsDetail.id).subscribe(res => {
         this.objNewsDetail.unsure_percentage = res['response'].data[0].unsure_percentage;
         this.objNewsDetail.unsure_votes = res['response'].data[0].unsure_votes;;
@@ -542,6 +560,10 @@ export class NewsdetailsComponent implements OnInit {
 
   downVoteFromNews = () => {
     if (this.objNewsDetail.negative_voted === true) {
+      this.objNewsDetail.positive_voted = false;
+      this.objNewsDetail.negative_voted = false;
+
+      this.objNewsDetail.unsure = false;
       this.srvActivityService.deleteDownVoteEndPoint(this.objNewsDetail.id).subscribe(res => {
         this.objNewsDetail.negative_percentage = res['response'].data[0].negative_percentage;
         this.objNewsDetail.negative_votes = res['response'].data[0].negative_votes;
@@ -551,6 +573,10 @@ export class NewsdetailsComponent implements OnInit {
       return;
     }
     else if (this.objNewsDetail.negative_voted === null || this.objNewsDetail.negative_voted === false) {
+      this.objNewsDetail.positive_voted = false;
+      this.objNewsDetail.negative_voted = false;
+
+      this.objNewsDetail.unsure = false;
       this.srvActivityService.downVoteOfNewsEndPoint(this.objNewsDetail.id).subscribe(res => {
         this.objNewsDetail.negative_percentage = res['response'].data[0].negative_percentage;
         this.objNewsDetail.negative_votes = res['response'].data[0].negative_votes;

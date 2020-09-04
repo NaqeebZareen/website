@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { AccountService } from 'src/app/services/account/account.service';
 import { LoggingService } from 'src/app/services/loggingFactory/logging-service.service';
 import { LocalStorageFactoryService } from 'src/app/services/localStorageFactory/local-storage-factory.service';
@@ -34,6 +34,8 @@ export class PopularActivityListComponent implements OnInit, OnDestroy {
   public objIEventLog: IEventLog;
   public checkResponce: boolean;
 
+  public went_wrong: boolean;
+
 
   show = true;
   // subject to unsubscibe from obserable
@@ -63,6 +65,7 @@ export class PopularActivityListComponent implements OnInit, OnDestroy {
     this.objActivityRequest = new IActivityRequestBody();
     this.popActivity = new PopularList;
     this.checkResponce = false;
+    this.went_wrong = false;
   }
 
 
@@ -103,6 +106,7 @@ export class PopularActivityListComponent implements OnInit, OnDestroy {
           else {
             this.popularActivityList = res['response'].data['activities'];
             this.show = false;
+            // this.window['prerenderReady'] = true;
           }
         });
       });
@@ -111,17 +115,30 @@ export class PopularActivityListComponent implements OnInit, OnDestroy {
     else {
       this.srvActivityService.getResultEndpoint(this.objActivityRequest).subscribe(res => {
         // console.log(res['response'].data['activities']);
+        // debugger;
         if (res['response'].data['no_of_records'] === 0 && res['response'].data['page_no'] === 1) {
           this.popularActivityList = null;
           this.show = false;
-          // console.log(" i am in");
+          // console.log(" i am in", res);
 
         }
         else {
           this.popularActivityList = res['response'].data['activities'];
           this.show = false;
+          // this.window['prerenderReady'] = true;
+          // console.log(" i am in", res);
+
         }
-      });
+      }, err => {
+        // console.log(err['status']);
+        if (err['status'] === 404 || err['status'] === 503) {
+          // console.log("something went wrong");
+          this.show = false;
+          this.went_wrong = true;
+        }
+      },
+
+      );
     }
 
 

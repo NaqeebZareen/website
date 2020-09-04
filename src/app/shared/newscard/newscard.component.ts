@@ -112,6 +112,10 @@ export class NewscardComponent implements OnInit {
 
     if (this.news.positive_voted === true) {
 
+      this.news.positive_voted = false;
+      this.news.negative_voted = false;
+
+      this.news.unsure = false;
       this.srvActivityService.deleteUpVoteEndPoint(this.news.id).subscribe(res => {
 
 
@@ -125,6 +129,9 @@ export class NewscardComponent implements OnInit {
       return;
     }
     else if (this.news.positive_voted === null || this.news.positive_voted === false) {
+      this.news.positive_voted = true;
+      this.news.negative_voted = false;
+      this.news.unsure = false;
       this.srvActivityService.addVoteToNewsEndPoint(this.news.id).subscribe(res => {
         this.news.negative_percentage = res['response'].data[0].negative_percentage;
         this.news.negative_votes = res['response'].data[0].negative_votes;
@@ -143,7 +150,10 @@ export class NewscardComponent implements OnInit {
   notSureVoteToNews = () => {
 
     if (this.news.unsure === true) {
+      this.news.positive_voted = false;
+      this.news.negative_voted = false;
 
+      this.news.unsure = false;
       this.srvActivityService.deleteNotSureVoteEndPoint(this.news.id).subscribe(res => {
         this.news.unsure_percentage = res['response'].data[0].unsure_percentage;
         this.news.unsure_votes = res['response'].data[0].unsure_votes;
@@ -155,6 +165,9 @@ export class NewscardComponent implements OnInit {
       return;
     }
     else if (this.news.unsure === null || this.news.unsure === false) {
+      this.news.unsure = true;
+      this.news.positive_voted = false;
+      this.news.negative_voted = false;
       this.srvActivityService.addNotSureVoteEndPoint(this.news.id).subscribe(res => {
         this.news.unsure_percentage = res['response'].data[0].unsure_percentage;
         this.news.unsure_votes = res['response'].data[0].unsure_votes;;
@@ -169,6 +182,10 @@ export class NewscardComponent implements OnInit {
 
   downVoteFromNews = () => {
     if (this.news.negative_voted === true) {
+      this.news.positive_voted = false;
+      this.news.negative_voted = false;
+
+      this.news.unsure = false;
       this.srvActivityService.deleteDownVoteEndPoint(this.news.id).subscribe(res => {
         this.news.negative_percentage = res['response'].data[0].negative_percentage;
         this.news.negative_votes = res['response'].data[0].negative_votes;
@@ -180,6 +197,9 @@ export class NewscardComponent implements OnInit {
       return;
     }
     else if (this.news.negative_voted === null || this.news.negative_voted === false) {
+      this.news.negative_voted = true;
+      this.news.positive_voted = false;
+      this.news.unsure = false
       this.srvActivityService.downVoteOfNewsEndPoint(this.news.id).subscribe(res => {
 
         this.news.negative_percentage = res['response'].data[0].negative_percentage;
@@ -191,7 +211,6 @@ export class NewscardComponent implements OnInit {
       });
     }
   }
-
 
 
   userVoteUp = () => {

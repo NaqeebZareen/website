@@ -54,7 +54,7 @@ import { from } from 'rxjs';
 export function getAuthServiceConfigs() {
   let config = new SocialServiceConfig()
     .addFacebook("2205506036409861")
-    .addGoogle("Your-Google-Client-Id")
+    // .addGoogle("Your-Google-Client-Id")
     .addLinkedIn("Your-LinkedIn-Client-Id");
   return config;
 }
@@ -120,6 +120,7 @@ export function provideConfig() {
     AppRoutingModule
   ],
   providers: [
+
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpConfigInterceptor, multi: true

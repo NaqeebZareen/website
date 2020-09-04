@@ -117,8 +117,8 @@
       <div class="row my-5 justify-content-center">
         <div class="col-lg-8 col-md-12">
           <h3 class="event-name-font mb-2" style="font-family: BreeSerif-Regular;color: #322941;">Description</h3>
-          <p class="event-detail-font bloghtml">
-            {{ objActivityDetail.description }}
+          <p class="event-detail-font bloghtml" [innerHTML]="objActivityDetail.description">
+            <!-- {{ objActivityDetail.description }} -->
           </p>
         </div>
 
@@ -301,8 +301,8 @@
       <div class="row my-5 justify-content-center">
         <div class="col-lg-8 col-md-12">
           <h3 class="event-name-font mb-2" style="font-family: BreeSerif-Regular;color: #322941;">Description</h3>
-          <p class="event-detail-font bloghtml">
-            {{ objActivityDetail.description }}
+          <p class="event-detail-font bloghtml" [innerHTML]="objActivityDetail.description">
+            <!-- {{ objActivityDetail.description }} -->
           </p>
         </div>
 

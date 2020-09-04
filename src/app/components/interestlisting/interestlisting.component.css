@@ -17,3 +17,109 @@
 }
 
 }
+
+
+
+.cata-sub-nav {
+    /* background: #eee; */
+    padding: 12px 15px 17px;
+    margin: 0 37px;
+    /* Make this scrollable when needed */
+    overflow-x: auto;
+    /* We don't want vertical scrolling */
+    overflow-y: hidden;
+    /* Make an auto-hiding scroller for the 3 people using a IE */
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    /* For WebKit implementations, provide inertia scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* We don't want internal inline elements to wrap */
+    white-space: nowrap;
+    /* Remove the default scrollbar for WebKit implementations */
+  }
+  .cata-sub-nav::-webkit-scrollbar {
+        display: none;
+    }
+  .cata-sub-nav ul {
+    margin: 0;
+        display: flex;
+          -webkit-padding-start: 0px;
+  }
+  .cata-sub-nav li {
+    display: inline-table;
+    margin: 0 10px;
+        font-size: 16px;
+  } 
+  .arrow{
+  /* background: black; */
+  }
+  .nav-prev {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 17px;
+    margin-top: 0px;
+    /* background-image: url('../../../assets/Website_Icons/left-icon.svg') !important; */
+  }
+  .nav-next {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 7px;
+    margin-top: -28px;
+    /* background-image: url('../../../assets/Website_Icons/right-icon.svg') !important; */
+  }
+  
+  /* .arrow-pre {
+    background-image: url('../../../assets/Website_Icons/left-icon.svg') !important;
+  }
+  
+  .arrow-next {
+  
+    background-image: url('../../../assets/Website_Icons/right-icon.svg') !important;
+  } */
+  
+  li a{
+    background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      /* padding: 14px 16px; */
+      transition: 0.3s;
+      /* font-weight: bold; */
+      /* height: 40px; */
+      font-size: 11px;
+  }
+  li button:focus.nav-item {
+    /* background-color: #ccc; */
+    background: #466ce4 0% 0% no-repeat padding-box !important;
+    color: #EFF1F7 !important;
+    padding-left: 25px;
+      border-radius: 100px;
+      padding-right: 25px;
+    /* height: 40px; */
+    /* padding-left: 10px;
+    padding-right: 10px; */
+  }
+  .active{
+    /* background: #466ce4 0% 0% no-repeat padding-box !important;
+    color: #EFF1F7 !important;
+    padding-left: 20px;
+      border-radius: 100px;
+      padding-right: 20px;
+      padding-top: 2px;
+      padding-bottom: 2px; */
+  }
+  button.active{
+    background: #466ce4 0% 0% no-repeat padding-box !important;
+    color: #EFF1F7 !important;
+    padding-left: 20px;
+      border-radius: 100px;
+      padding-right: 20px;
+      padding-top: 2px;
+      padding-bottom: 2px;
+  }
+  button.nav-item{
+    background: #EFF1F7;
+    color: darkslategrey;
+  }

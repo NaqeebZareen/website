@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, AfterContentChecked, AfterViewInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IEventLog } from 'src/app/models/event-log';
-import { Subject } from 'rxjs';
+import { Subject, timer } from 'rxjs';
 import * as moment from 'moment';
 import { fnSuggestedInterest } from 'src/app/utilities/helper';
 import { AccountService } from 'src/app/services/account/account.service';
@@ -125,46 +125,95 @@ export class SearchComponent implements OnInit, OnDestroy {
     // receving data from home component
     this.searchInputInterestIndex = [];
     this.searchInputInterest = [];
-    this.activatedroute.queryParams.subscribe(params => {
 
-      if (params.date != null) {
-        var result = Object.values(params.date); // date is an object, we want to extract values form object 
-        this.searchInputDates = result;
-      } else {
-        this.searchInputDates = null;
-      }
-      if (params.city == "" || params.city == undefined) {
-        this.searchInputCity = "";
-      } else {
-        this.searchInputCity = params.city;
-      }
+    var token = localStorage.getItem("access_token");
+    if (token === null || token === undefined) {
+      timer(5000).subscribe(res => {
+        this.activatedroute.queryParams.subscribe(params => {
 
-      // console.log(params.interest, "res");
-      if (params.interestIndex != null && params.interest != "Interest") {
-        this.searchInputInterestIndex = Object.values(params.interestIndex);
-        this.searchInputInterest = Object.values(params.interest);
-        // console.log(this.searchInputInterestIndex, "11");
-      } else {
-        this.searchInputInterest = Object.values(this.searchInputInterest);
-        this.searchInputInterestIndex = Object.values(this.searchInputInterestIndex);
-        // console.log(this.searchInputInterestIndex, "111");
-      }
-      this.searchInputText = params.title;
+          if (params.date != null) {
+            var result = Object.values(params.date); // date is an object, we want to extract values form object 
+            this.searchInputDates = result;
+          } else {
+            this.searchInputDates = null;
+          }
+          if (params.city == "" || params.city == undefined) {
+            this.searchInputCity = "";
+          } else {
+            this.searchInputCity = params.city;
+          }
 
-      // if not date then select current date
-      if (this.searchInputDates != null) {
-        this.dateFormateHelper();
-      }
-      this.searchInputInterest = this.searchInputInterest.filter(function (elem, index, self) {
-        return index === self.indexOf(elem);
+          // console.log(params.interest, "res");
+          if (params.interestIndex != null && params.interest != "Interest") {
+            this.searchInputInterestIndex = Object.values(params.interestIndex);
+            this.searchInputInterest = Object.values(params.interest);
+            // console.log(this.searchInputInterestIndex, "11");
+          } else {
+            this.searchInputInterest = Object.values(this.searchInputInterest);
+            this.searchInputInterestIndex = Object.values(this.searchInputInterestIndex);
+            // console.log(this.searchInputInterestIndex, "111");
+          }
+          this.searchInputText = params.title;
+
+          // if not date then select current date
+          if (this.searchInputDates != null) {
+            this.dateFormateHelper();
+          }
+          this.searchInputInterest = this.searchInputInterest.filter(function (elem, index, self) {
+            return index === self.indexOf(elem);
+          });
+          // call to getActivities in activityListCompoennt
+          // console.log(this.searchInputInterestIndex, "1");
+          this.activityListComponent.getActivities(this.searchInputText, this.searchInputCity, this.searchInputInterestIndex,
+            this.searchInputDates, 20, 1);
+
+
+        });
       });
-      // call to getActivities in activityListCompoennt
-      // console.log(this.searchInputInterestIndex, "1");
-      this.activityListComponent.getActivities(this.searchInputText, this.searchInputCity, this.searchInputInterestIndex,
-        this.searchInputDates, 20, 1);
+    }
+    else {
+      this.activatedroute.queryParams.subscribe(params => {
+
+        if (params.date != null) {
+          var result = Object.values(params.date); // date is an object, we want to extract values form object 
+          this.searchInputDates = result;
+        } else {
+          this.searchInputDates = null;
+        }
+        if (params.city == "" || params.city == undefined) {
+          this.searchInputCity = "";
+        } else {
+          this.searchInputCity = params.city;
+        }
+
+        // console.log(params.interest, "res");
+        if (params.interestIndex != null && params.interest != "Interest") {
+          this.searchInputInterestIndex = Object.values(params.interestIndex);
+          this.searchInputInterest = Object.values(params.interest);
+          // console.log(this.searchInputInterestIndex, "11");
+        } else {
+          this.searchInputInterest = Object.values(this.searchInputInterest);
+          this.searchInputInterestIndex = Object.values(this.searchInputInterestIndex);
+          // console.log(this.searchInputInterestIndex, "111");
+        }
+        this.searchInputText = params.title;
+
+        // if not date then select current date
+        if (this.searchInputDates != null) {
+          this.dateFormateHelper();
+        }
+        this.searchInputInterest = this.searchInputInterest.filter(function (elem, index, self) {
+          return index === self.indexOf(elem);
+        });
+        // call to getActivities in activityListCompoennt
+        // console.log(this.searchInputInterestIndex, "1");
+        this.activityListComponent.getActivities(this.searchInputText, this.searchInputCity, this.searchInputInterestIndex,
+          this.searchInputDates, 20, 1);
 
 
-    });
+      });
+    }
+
     // console.log(this.activityListComponent);
 
 

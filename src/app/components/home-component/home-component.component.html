@@ -28,6 +28,8 @@
             </span>
 
           </h4>
+
+
         </div>
         <app-newslisting></app-newslisting>
         <!-- <app-popular-activity-list></app-popular-activity-list> -->
@@ -47,7 +49,7 @@
       <app-home-suggested-interest></app-home-suggested-interest> -->
       <div class="container" class="main1 hightset">
         <div class="mb-4 mt-4 home-wrapper-header home-wrapper-header2 sz">
-          <h4 class="header-title" style="">
+          <h4 class="header-title">
             <!-- Local news -->
             Local activities
             <span style="cursor: pointer; ">
@@ -61,6 +63,31 @@
             </span>
 
           </h4>
+
+
+          <!-- Carousel -->
+
+          <div style="width: 840px; float: right;position: absolute;    left: 420px;
+          top: 20px;">
+            <div class="cata-sub-nav">
+              <div class="nav-prev arrow" style="display: none; cursor: pointer;"><img
+                  src="../../../assets/Website_Icons/chevron-right.svg" alt=""></div>
+
+              <ul class="start">
+                <li *ngFor="let interest of list1;">
+
+                  <button style="  box-shadow: none !important; outline: none !important;
+                    border:none;" (click)="submitUrl(interest)" class=" nav-item">{{interest}}
+                  </button>
+                </li>
+
+              </ul>
+              <div class="nav-next arrow" style="cursor: pointer;"><img
+                  src="../../../assets/Website_Icons/chevron-left.svg" alt="">
+              </div>
+
+            </div>
+          </div>
         </div>
         <app-popular-activity-list></app-popular-activity-list>
         <!-- <app-newslisting></app-newslisting> -->

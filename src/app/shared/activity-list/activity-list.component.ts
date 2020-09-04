@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelper } from 'src/app/services/jwtHelper/jwt-helper.service';
 import { LocalStorageFactoryService } from 'src/app/services/localStorageFactory/local-storage-factory.service';
@@ -183,7 +183,7 @@ export class ActivityListComponent implements OnInit, AfterViewInit {
       else {
         this.totalActivities = res['response'].data['activities'];
         this.activityList = this.totalActivities;
-
+        // this.window['prerenderReady'] = true;
         // console.log(this.activityList);
 
       }

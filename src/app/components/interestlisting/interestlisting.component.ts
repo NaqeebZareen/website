@@ -17,6 +17,7 @@ import { takeUntil } from 'rxjs/operators';
 import { SEOService } from '../../services/SEOService/seo.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
+declare var $: any;
 @Component({
   selector: 'app-interestlisting',
   templateUrl: './interestlisting.component.html',
@@ -34,10 +35,12 @@ export class InterestlistingComponent implements OnInit {
   public city: any;
   public interest: any;
   public pageTitle: any;
+  public check: any;
   show = true;
   // subject to unsubscibe from obserable
   public unsubscribe = new Subject<void>();
   public head: any;
+  public suggestedCities: any[];
   public activitiesName = {
     sports: 'Sports',
     music: 'Music and Concerts',
@@ -56,35 +59,31 @@ export class InterestlistingComponent implements OnInit {
     charity: 'Charity and Volunteer work'
   };
   constructor(
-    @Inject(DOCUMENT) private doc, private meta: Meta, private title: Title, private seoService: SEOService, private activatedroute: ActivatedRoute, private srvJwthelperService: JwtHelper, private srvLoggingService: LoggingService,
+    @Inject(DOCUMENT) private doc, private srvAccountService: AccountService, private meta: Meta, private title: Title, private seoService: SEOService, private activatedroute: ActivatedRoute, private srvJwthelperService: JwtHelper, private srvLoggingService: LoggingService,
     private srvLocalStorageFactory: LocalStorageFactoryService, private router: Router,
     private srvActivityService: ActivityService) {
     this.objIEventLog = new IEventLog();
 
 
     this.popActivity = new PopularList;
+    this.check = 0;
   }
   ngOnInit() {
-
+    this.getCities();
     this.setPageTitle('InterestListing');
     this.createLinkForCanonicalURL();
     this.getPageTitle();
     // timer(3000).subscribe(x => {
     //   this.homesugested();
     // });
-    this.activatedroute.params.subscribe(params => {
-      this.urltitle = params["urltitle"];
-
-      // we get string we need to convert to boolean
-      // console.log(this.activityId);
-      // if (String(params["ishosting"]).toLowerCase() === 'true') {
-      //   this.isHosting = true;
-      // } else {
-      //   this.isHosting = false;
-      // }
-
-    });
-    // console.log(this.urltitle);
+    // console.log(this.router.url);
+    var str = this.router.url;
+    str = str.slice(str.lastIndexOf('/') + 1);
+    // console.log(str);
+    str = str.replace(/-|\s/g, " ");
+    str = str.replace(/and/g, "&");
+    // console.log(str);
+    this.urltitle = str;
 
     this.homesugested(this.urltitle);
     this.head = this.urltitle;
@@ -104,30 +103,32 @@ export class InterestlistingComponent implements OnInit {
   createLinkForCanonicalURL() {
     this.seoService.createLinkForCanonicalURL();
   }
-  async homesugested(title: any) {
-    if (title === "San Francisco" || title === 'London' || title === 'Austin' || title === 'New York' || title === 'Pittsburgh' || title === 'San Jose' || title === 'Silicon Valley' || title === 'Washington DC' || title === 'Chicago') {
-      this.city = title;
-      this.interest = null;
-      var searchPhrase;
-      var date;
-      var interest = 'unknown';
-      var city = this.city;
-      this.srvLoggingService.Add_Filters(searchPhrase, date, interest, city).subscribe(res => { });
-    }
-    else {
-      this.interest = title;
-      var searchPhrase;
-      var date;
-      interest = this.interest;
-      city = "unknown";
-      this.srvLoggingService.Add_Filters(searchPhrase, date, interest, city).subscribe(res => { });
-    }
-    var access_token = localStorage.getItem('access_token');
-    // var city = localStorage.getItem('city');
+  async homesugested(category: any) {
 
-    this.srvActivityService.getActivitiesListing(this.city, this.interest).then(res => {
+    var access_token = localStorage.getItem('access_token');
+
+    var city;
+    var records_per_page = 40;
+    var page_no = 1;
+    city = localStorage.getItem("headercity");
+
+    if (city === null || city === undefined) {
+      city = "San Francisco";
+    }
+    var categories = [];
+    categories.push(category);
+    this.srvActivityService.getResultEndPointSecond(categories, city, records_per_page, page_no).subscribe(res => {
       // console.log(res);
-      this.newlyAddedList = res['response'].data;
+      if (res['response'].data['no_of_records'] === 0 && res['response'].data['page_no'] === 1) {
+        // console.log(this.activityList.length);
+        // this.activityList.length
+
+        this.check = 1;
+      }
+      else {
+        this.newlyAddedList = res['response'].data['activities'];
+      }
+
       // for (let z of this.newlyAddedList) {
       //   console.log(z);
       // }
@@ -138,6 +139,12 @@ export class InterestlistingComponent implements OnInit {
   navigateToSearchPage = () => {
     this.router.navigate(['/search']);
 
+  }
+
+  moveToCityListing = (city: any) => {
+    // Pittsburgh
+    city = city.split(' ').join('-');
+    this.router.navigate([this.router.url, city]);
   }
   addEventLog = (action) => {
     this.objIEventLog.user_id = this.srvLocalStorageFactory.getfromLocalStorage(DBkeys.USER_ID);
@@ -160,7 +167,58 @@ export class InterestlistingComponent implements OnInit {
     this.unsubscribe.complete();
   }
 
+  getCities = () => {
+    this.srvAccountService.getUKanTargetedCities().pipe(takeUntil(this.unsubscribe)).subscribe(res => {
+      var lis = res['response'].data['cities'];
+
+      this.suggestedCities = [];
+      lis.forEach(element => {
+        // console.log(element.name);
+        this.suggestedCities.push(element.name);
+        // console.log(this.suggestedCities);
+      });
+
+    });
+  }
+
   ngAfterViewInit() {
+    $('.start li button.active').removeClass('active');
+
+    // $("ul li button:eq(1)").addClass("active");
+
+    $('.start').on('click', '.nav-item', function () {
+
+      $('.start li button.active').removeClass('active');
+      $(this).addClass('active');
+    });
+
+
+    $(".cata-sub-nav").on('scroll', function () {
+      const $val = $(this).scrollLeft();
+
+      if ($(this).scrollLeft() + $(this).innerWidth() >= $(this)[0].scrollWidth) {
+        $(".nav-next").hide();
+      } else {
+        $(".nav-next").show();
+      }
+
+      if ($val == 0) {
+        $(".nav-prev").hide();
+      } else {
+        $(".nav-prev").show();
+      }
+    });
+    // console.log('init-scroll: ' + $(".nav-next").scrollLeft());
+    $(".nav-next").on("click", function () {
+      $(".cata-sub-nav").animate({ scrollLeft: '+=120' }, 200);
+
+    });
+    $(".nav-prev").on("click", function () {
+      $(".cata-sub-nav").animate({ scrollLeft: '-=120' }, 200);
+    });
+
+
+
     var url = this.doc.URL;
     // var url = "https://www.youcan.tech/activities/Food-&-festival";
     // console.log(url);

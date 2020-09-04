@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { AccountService } from 'src/app/services/account/account.service';
 import { LoggingService } from 'src/app/services/loggingFactory/logging-service.service';
 import { LocalStorageFactoryService } from 'src/app/services/localStorageFactory/local-storage-factory.service';
@@ -72,6 +72,7 @@ export class NewslistingComponent implements OnInit {
           }
           else {
             this.popularNewsList = res['response'].data['news_data'];
+            // this.window['prerenderReady'] = true;
             this.show = false;
           }
 
@@ -90,6 +91,7 @@ export class NewslistingComponent implements OnInit {
         else {
           this.popularNewsList = res['response'].data['news_data'];
           this.show = false;
+          // this.window['prerenderReady'] = true;
         }
 
       });

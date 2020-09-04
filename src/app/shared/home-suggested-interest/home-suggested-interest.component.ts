@@ -72,7 +72,7 @@ export class HomeSuggestedInterestComponent implements OnInit {
       else {
         this.srvActivityService.getActivitiesHappeningIn24Hours(city, text).subscribe(res => {
           this.recmandedList = res['response'].data;
-          console.log(this.recmandedList);
+          // console.log(this.recmandedList);
         });
       }
 

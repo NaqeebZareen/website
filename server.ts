@@ -22,7 +22,13 @@ global['navigator'] = mock.getNavigator();
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
+
   const server = express();
+  // server.use(require('prerender-node'));
+
+  // server.use(require('prerender-node').set('prerenderToken', 'PW7nRy4GzTvZMmCOJTD7'));
+
+
   const distFolder = join(process.cwd(), 'dist/youcan-web-app/browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
@@ -43,7 +49,11 @@ export function app() {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    res.render(indexHtml, {
+      req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }]
+
+    });
+    // console.log("inner", indexHtml);
   });
 
 
@@ -53,14 +63,19 @@ export function app() {
     let rs = fs.createReadStream(`${__dirname}/dist/youcan-web-app/index.html`);
     res.writeHead(200, { "Content-type": "text/html" });
     rs.pipe(res);
+    // console.log("whata", res, "what");
+    // res.send(rs);
   })
 
-  server.use(require('prerender-node').set('prerenderToken', 'PW7nRy4GzTvZMmCOJTD7'));
 
+
+  // console.log("outer", indexHtml);
   return server;
 }
 
+// to get the route params working add below in your server.ts
 
+// app.get('/:routeParam', (req, res) => { res.render('index', {req}); //note 'index' uses the Universal engine })
 
 // route edit
 // var objExpress = express.Router();
@@ -87,7 +102,12 @@ function run() {
 
   // Start up the Node server
   const server = app();
-  server.use(require('prerender-node').set('prerenderToken', 'PW7nRy4GzTvZMmCOJTD7'));
+  server.use(require('prerender-node').set('prerenderToken', 'PW7nRy4GzTvZMmCOJTD7').set('protocol', 'https'));
+  server.get('*', function (req, res) {
+    res.send(join(process.cwd(), 'dist/youcan-web-app/browser') + '/index.html');
+  });
+  // console.log("121", server, "i am server");
+  // server.use(require('prerender-node').set('prerenderToken', 'PW7nRy4GzTvZMmCOJTD7'));
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });

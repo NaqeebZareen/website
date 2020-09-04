@@ -33,6 +33,19 @@ export class ActivityService {
   }
 
 
+  getResultEndPointSecond = (categories, city, records_per_page, page_no) => {
+    let body;
+    body = {
+      categories: categories,
+      city: city,
+
+      records_per_page: records_per_page,
+      page_no: page_no,
+
+    };
+
+    return this.http.post<any>(this.srvApiEndpointService.apiEndPoints.Activity.GetResultEndpointUrl, body);
+  }
   getResultEndpoint = (data) => {
 
 

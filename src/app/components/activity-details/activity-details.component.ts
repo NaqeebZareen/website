@@ -32,6 +32,8 @@ import { promise } from 'protractor';
 import { async } from '@angular/core/testing';
 // import * as firebase from 'firebase';
 // const analytics = firebase.analytics();
+// declare var prerenderReady: any;
+// const prerenderReady = require("prerenderReady");
 @Component({
   selector: 'app-activity-details',
   templateUrl: './activity-details.component.html',
@@ -183,43 +185,88 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
 
     });
 
-    // debugger;
-    // console.log(this.loading);
-    this.srvActivityService.getActivityDetailUserEndpoint(this.activityId).pipe(takeUntil(this.unsubscribe))
-      .subscribe(res => {
-        this.loading = false;
-        // console.log(res);
-        // console.log('ssss1', res['response'].data[0]);
+    var token = localStorage.getItem("access_token");
+    if (token === null || token === undefined) {
+      timer(5000).subscribe(res => {
+
+        this.srvActivityService.getActivityDetailUserEndpoint(this.activityId).pipe(takeUntil(this.unsubscribe))
+          .subscribe(res => {
+            this.loading = false;
+            // console.log(res);
+            // console.log('ssss1', res['response'].data[0]);
 
 
-        // console.log(this.loading);
-        this.objActivityDetail = res['response'].data['activity_detail'];
-        this.newlyAddedList = res['response'].data['similar_activities'];
-        this.myTitle = this.objActivityDetail.title;
-        this.meta.addTag({ name: 'Discovery', content: this.myTitle });
+            // console.log(this.loading);
+            this.objActivityDetail = res['response'].data['activity_detail'];
+            this.newlyAddedList = res['response'].data['similar_activities'];
+            this.myTitle = this.objActivityDetail.title;
+            this.meta.addTag({ name: 'Discovery', content: this.myTitle });
 
-        this.LoadingFlag = 0;
-        if (this.objActivityDetail.is_wishlist === undefined || this.objActivityDetail.is_wishlist === null) {
-          this.objActivityDetail.is_wishlist = false;
-        }
+            this.LoadingFlag = 0;
+            if (this.objActivityDetail.is_wishlist === undefined || this.objActivityDetail.is_wishlist === null) {
+              this.objActivityDetail.is_wishlist = false;
+            }
 
 
-        if (this.objActivityDetail.is_wishlist) {
-          this.showImage = true;
-        } else { this.showImage = false }
+            if (this.objActivityDetail.is_wishlist) {
+              this.showImage = true;
+            } else { this.showImage = false }
 
-        this.lat = parseFloat(this.objActivityDetail.latitude);
-        this.lng = parseFloat(this.objActivityDetail.longitude);
-        if (!this.objActivityDetail.price) {
-          this.objActivityDetail.price = "Free";
-        }
-        // call to fnc to formate date/time
-        this.momentTimeformate(this.objActivityDetail.start_time, this.objActivityDetail.start_date);
-        // add default pics 
-        // this.addDefaultPic();
+            this.lat = parseFloat(this.objActivityDetail.latitude);
+            this.lng = parseFloat(this.objActivityDetail.longitude);
+            if (!this.objActivityDetail.price) {
+              this.objActivityDetail.price = "Free";
+            }
+            // call to fnc to formate date/time
+            this.momentTimeformate(this.objActivityDetail.start_time, this.objActivityDetail.start_date);
+            // add default pics 
+            // this.addDefaultPic();
 
+            // this.window['prerenderReady'] = true;
+          });
 
       });
+    }
+    else {
+
+      this.srvActivityService.getActivityDetailUserEndpoint(this.activityId).pipe(takeUntil(this.unsubscribe))
+        .subscribe(res => {
+          this.loading = false;
+          // console.log(res);
+          // console.log('ssss1', res['response'].data[0]);
+
+
+          // console.log(this.loading);
+          this.objActivityDetail = res['response'].data['activity_detail'];
+          this.newlyAddedList = res['response'].data['similar_activities'];
+          this.myTitle = this.objActivityDetail.title;
+          this.meta.addTag({ name: 'Discovery', content: this.myTitle });
+
+          this.LoadingFlag = 0;
+          if (this.objActivityDetail.is_wishlist === undefined || this.objActivityDetail.is_wishlist === null) {
+            this.objActivityDetail.is_wishlist = false;
+          }
+
+
+          if (this.objActivityDetail.is_wishlist) {
+            this.showImage = true;
+          } else { this.showImage = false }
+
+          this.lat = parseFloat(this.objActivityDetail.latitude);
+          this.lng = parseFloat(this.objActivityDetail.longitude);
+          if (!this.objActivityDetail.price) {
+            this.objActivityDetail.price = "Free";
+          }
+          // call to fnc to formate date/time
+          this.momentTimeformate(this.objActivityDetail.start_time, this.objActivityDetail.start_date);
+          // add default pics 
+          // this.addDefaultPic();
+          // this.window['prerenderReady'] = true;
+
+        });
+    }
+
+
 
     this.registerActivityForm = this.formBuilder.group(
       {
@@ -269,16 +316,7 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
 
     this.showSocialBtn = true;
     this.userId = this.srvLocalStorageFactory.getfromLocalStorage(DBkeys.USER_ID);
-    // call to activity api to get details of activity 
 
-    // if (this.objActivityDetail.cover === undefined) {
-    //   console.log(this.objActivityDetail);
-    //   console.log(this.objActivityDetail.cover);
-    //   timer(2000).subscribe(res => {
-    //     console.log(this.objActivityDetail);
-    //     console.log(this.objActivityDetail.cover);
-    //   })
-    // }
 
 
 
@@ -618,6 +656,7 @@ export class ActivityDetailsComponent implements OnInit, OnDestroy {
   ngAfterViewInit() {
     // console.log(this.router);
 
+    // window.prerenderReady = true;
     this.breadcrumb();
 
     var url = this.doc.URL;

@@ -16,7 +16,10 @@
             <span *ngIf="searchInputCity != ''" class="home-cities siz"
               style="color: #322941;">{{searchInputCity}}</span>
           </button>
-          <ul class="dropdown-menu" style="min-width: 13rem;">
+          <ul class="dropdown-menu" style="min-width: 13rem;
+          overflow-y: scroll;
+          height: 300px; 
+      ">
             <button (click)="selectSearchCity(city)" ngDefaultControl style="padding: .35rem 1.5rem;"
               class="dropdown-item fontstyle" *ngFor="let city of suggestedCities; let i = index">
               {{city}}

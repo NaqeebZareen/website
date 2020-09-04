@@ -21,6 +21,7 @@ import { ActivityService } from 'src/app/services/activityFactory/activity.servi
 import { SEOService } from '../../services/SEOService/seo.service';
 import { NewslistingComponent } from 'src/app/shared/newslisting/newslisting.component';
 import { HomeSuggestedInterestComponent } from 'src/app/shared/home-suggested-interest/home-suggested-interest.component';
+declare var $: any;
 @Component({
   selector: 'app-home-component',
   templateUrl: './home-component.component.html',
@@ -55,6 +56,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   public unsubscribe = new Subject<void>();
   public obj;
   private list: string[] = [];
+  public list1: any;
+
   // props for dateRange picker these all defualt props we got from their npm package page 
   initialDate = new Date();
   maxDate = new Date();
@@ -93,6 +96,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
+    // console.log("why");
     this.setPageTitle('Home');
     this.createLinkForCanonicalURL();
     this.getPageTitle();
@@ -143,10 +147,18 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
 
-
+    this.list1 = ["All", "Music & Concerts", "Family & Kids", "Health & Fitness", "Sightseeing & Tourism", "Arts & Performance", "Shopping & Fashion", "Books & hobbies", "Tech & workshops", "Food & festival", "Outdoor Activities", "Charity and Volunteer work", "Socialization & Networking", "Sports", "Politics", "Others"];
 
   }
 
+  submitUrl(interest: any) {
+    // console.log(interest);
+    interest = interest.split(' ').join('-');
+    var res = interest.replace(/&/g, "and");
+    // console.log(res);
+
+    this.router.navigate(['/activities', res]);
+  }
   setPageTitle(title: string) {
     this.seoService.setPageTitle(title);
   }
@@ -284,6 +296,46 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+
+
+
+    $('.start li button.active').removeClass('active');
+
+    // $("ul li button:eq(1)").addClass("active");
+
+    $('.start').on('click', '.nav-item', function () {
+
+      $('.start li button.active').removeClass('active');
+      $(this).addClass('active');
+    });
+
+
+    $(".cata-sub-nav").on('scroll', function () {
+      const $val = $(this).scrollLeft();
+
+      if ($(this).scrollLeft() + $(this).innerWidth() >= $(this)[0].scrollWidth) {
+        $(".nav-next").hide();
+      } else {
+        $(".nav-next").show();
+      }
+
+      if ($val == 0) {
+        $(".nav-prev").hide();
+      } else {
+        $(".nav-prev").show();
+      }
+    });
+    // console.log('init-scroll: ' + $(".nav-next").scrollLeft());
+    $(".nav-next").on("click", function () {
+      $(".cata-sub-nav").animate({ scrollLeft: '+=120' }, 200);
+
+    });
+    $(".nav-prev").on("click", function () {
+      $(".cata-sub-nav").animate({ scrollLeft: '-=120' }, 200);
+    });
+
+
+
     // var url = this.doc.URL;
     var url = "https://www.youcan.tech/";
     // console.log(url);

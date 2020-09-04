@@ -59,7 +59,7 @@ export class ApiEndPointService {
       'IsActivityPaidEndpointUrl': this.PaymentRootUrl + '/api/orders/isactivitypaid?activityid='
     },
     'Activity': {
-      'GetMetaData': this.root2 + '/api/v4/api/web-seo',
+      'GetMetaData': this.root2 + '/api/v4.1/url/meta',
       'GetResultEndpointUrl': this.root2 + '/api/v4.1/activity/search',
       'GetActivityDetailEndpointUrl': this.RootUrl + '/api/v1/activity/activitydetail?id=',
       'GetActivityDetailUserEndpointUrl': this.root2 + '/api/v4.1/activity/detail',
