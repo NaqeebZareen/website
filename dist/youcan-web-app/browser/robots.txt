@@ -1,0 +1,23 @@
+# http://www.google.com/adsbot.html - AdsBot ignores * wildcard
+User-agent: Googlebot
+Disallow: 
+Disallow: /login
+Disallow: /profile
+Disallow: /newwishlist
+Disallow: /profile/wish-list
+Disallow: /**
+Disallow: /update-profile
+Disallow: /how-its-work
+Disallow: /refund-policy
+Disallow: /license-agreement
+Disallow: /contact-us
+Disallow: /about-us
+
+Sitemap: https://www.youcan.tech/sitemap.xml
+
+http://youcan.tech/robots.txt
+
+User agent: *
+Allow: /
+Disallow: /#/login
+Disallow: /login
