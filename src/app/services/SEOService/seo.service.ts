@@ -16,10 +16,10 @@ export class SEOService {
     return this.title.getTitle();
   }
   createLinkForCanonicalURL() {
-    let link: HTMLLinkElement = this.doc.createElement('link');
-    link.setAttribute('rel', 'canonical');
-    this.doc.head.appendChild(link);
-    link.setAttribute('href', this.doc.URL);
+    // let link: HTMLLinkElement = this.doc.createElement('link');
+    // link.setAttribute('rel', 'canonical');
+    // this.doc.head.appendChild(link);
+    // link.setAttribute('href', this.doc.URL);
   }
 
   getMetaData = (url: string) => {

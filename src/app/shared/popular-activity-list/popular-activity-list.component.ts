@@ -90,7 +90,7 @@ export class PopularActivityListComponent implements OnInit, OnDestroy {
     this.objActivityRequest.records_per_page = 8;
     this.objActivityRequest.is_new_api = true;
     this.objActivityRequest.city = [];
-    this.objActivityRequest.date_range.push(formatDate(new Date(), 'yyyy-MM-dd', 'en'));
+    // this.objActivityRequest.date_range.push(formatDate(new Date(), 'yyyy-MM-dd', 'en'));
 
     var token = localStorage.getItem("access_token");
     if (token === null || token === undefined) {
