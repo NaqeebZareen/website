@@ -9,7 +9,7 @@ import { from } from 'rxjs';
 //  San-Francisco
 const routes: Routes = [
 
-  { path: '', redirectTo: 'home', pathMatch: 'full' }, // we commited cz it frist load ,ddon't want /anyroute 
+  // { path: '', redirectTo: 'home', pathMatch: 'full' }, // we commited cz it frist load ,ddon't want /anyroute 
   { path: '', component: HomeComponent },
 
   {

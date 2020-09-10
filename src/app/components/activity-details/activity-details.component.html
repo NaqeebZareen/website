@@ -24,7 +24,7 @@
 
   <section *ngIf="objActivityDetail.picture != null" class="overlay">
 
-    <div class="container p-5 ist" style="" *ngIf="LoadingFlag == 0">
+    <div class="container p-5 ist" *ngIf="LoadingFlag == 0">
 
       <div class="col" *ngIf="routExist === true">
         <ol class="breadcrumb">
@@ -53,7 +53,7 @@
                   {{ objActivityDetail.title}}</h1>
 
               </div>
-              <div class="widt" style="">
+              <div class="widt">
                 <div class="col-12" style="padding-left: 0px;">
                   <div class="row no-gutters" style="height: 55px;">
                     <div class="col-4">
@@ -61,7 +61,7 @@
                         <img src="../../../assets/tools-and-utensils.svg" alt="Avatar" class="image1"
                           style="width: 16px;padding-top: 3px;">
                         <div class="overlay1">
-                          <div class="text" style="">
+                          <div class="text">
                             <a class="new" href="{{objActivityDetail.source_link}}"
                               style="color:black;width: 102px !important;">{{objActivityDetail.source_link}}</a>
                           </div>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-6 spc" style="padding-left: 100px;">
 
-                      <div class="slect" style=" ">
+                      <div class="slect">
                         <a style="cursor:pointer;" (click)="addToWishList()">
                           <span *ngIf="objActivityDetail.is_wishlist === false" style="padding-right: 25px;"> <img
                               src="../../../assets/Website_Icons/starred.png" alt="" width="35px"></span>
@@ -189,7 +189,7 @@
         <div class="col-12">
 
 
-          <div style=''>
+          <div>
             <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
               (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
               (beforeChange)="beforeChange($event)">
@@ -246,7 +246,7 @@
                         <img src="../../../assets/tools-and-utensils.svg" alt="Avatar" class="image1"
                           style="width: 16px;padding-top: 3px;">
                         <div class="overlay1">
-                          <div class="text" style="">
+                          <div class="text">
                             <a class="new" href="{{objActivityDetail.source_link}}"
                               style="color:black;width: 102px !important;">{{objActivityDetail.source_link}}</a>
                           </div>
@@ -255,7 +255,7 @@
                     </div>
                     <div class="col-6 spc" style="padding-left: 100px;">
 
-                      <div class="slect" style=" ">
+                      <div class="slect">
                         <a style="cursor:pointer;" (click)="addToWishList()">
                           <span *ngIf="objActivityDetail.is_wishlist === false" style="padding-right: 25px;"> <img
                               src="../../../assets/Website_Icons/starred.png" alt="" width="35px"></span>
@@ -372,7 +372,7 @@
         <div class="col-12">
 
 
-          <div style=''>
+          <div>
             <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
               (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
               (beforeChange)="beforeChange($event)">

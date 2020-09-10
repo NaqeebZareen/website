@@ -14,15 +14,7 @@
         <!--  -->
         <!-- font-family: Gilroy-Bold -->
 
-        <div class="hig">
-            <button id="threee3" class="btn1" (click)="click2()" [style.background]="toggle2 ? '#EFF1F7' : '#FAFAFA'">
-                <img [src]="imgsrc2" [alt]="imgsrc2" class="imgpad" [ngStyle]="{'opacity': toggle2 ? '1' : '0.4' }">
-                <div class="font"
-                    [ngStyle]="{'font-family': toggle2 ? 'Gilroy-Bold' : 'Gilroy-Medium','opacity': toggle2 ? '1' :'0.4' }">
-                    Local
-                    news</div>
-            </button>
-        </div>
+
 
         <div class="hig">
             <button class="btn1" id="threee1" (click)="navigateToSearchPage()"
@@ -35,7 +27,15 @@
             </button>
         </div>
 
-
+        <div class="hig">
+            <button id="threee3" class="btn1" (click)="click2()" [style.background]="toggle2 ? '#EFF1F7' : '#FAFAFA'">
+                <img [src]="imgsrc2" [alt]="imgsrc2" class="imgpad" [ngStyle]="{'opacity': toggle2 ? '1' : '0.4' }">
+                <div class="font"
+                    [ngStyle]="{'font-family': toggle2 ? 'Gilroy-Bold' : 'Gilroy-Medium','opacity': toggle2 ? '1' :'0.4' }">
+                    Local
+                    news</div>
+            </button>
+        </div>
 
 
 
@@ -54,7 +54,7 @@
 
     <div class="down">
 
-        <span style="" class="follow">Follow us</span>
+        <span class="follow">Follow us</span>
         <div class="follow1">
             <a (click)="FacebookLink()" class="spc">
                 <img src="../../../assets/Website_Icons/facebook.png" alt="facebook" class="img1">

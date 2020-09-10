@@ -2,15 +2,11 @@
 
   <div class="col-12 search-result mt-2 mb-5">
     <div class="row addMarg">
-      <!-- | slice:0:totalnumber; let i = index -->
-      <div *ngFor="let activity of activityList " class="col-lg-3 col-md-5 col-12 card-size siz" style="">
-        <!-- <app-search-result-card [activity]="activity"></app-search-result-card> -->
 
+      <div *ngFor="let activity of activityList" class="col-lg-3 col-md-5 col-12 card-size siz">
         <div *ngIf="activity.picture != null">
-
           <app-search-result-card [activity]="activity"></app-search-result-card>
         </div>
-
         <div *ngIf="activity.picture === null">
           <app-recmonded-card [activity]="activity"></app-recmonded-card>
         </div>
